@@ -1,2 +1,7 @@
-package equipment;public interface Weapon {
+package equipment;
+
+import backpack.Item;
+
+public interface Weapon extends Item {
+
 }
