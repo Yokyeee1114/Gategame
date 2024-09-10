@@ -1,6 +1,6 @@
 package role;
 
-import backpack.Item;
+import main.java.com.example.gategame.backpack.Item;
 
 import java.util.List;
 

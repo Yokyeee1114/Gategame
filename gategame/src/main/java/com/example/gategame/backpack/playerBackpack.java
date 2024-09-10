@@ -1,6 +1,6 @@
-package backpack;
+package com.example.gategame.backpack;
 
-import character.Role;
+import com.example.gategame.role.Role;
 
 import java.util.ArrayList;
 import java.util.List;

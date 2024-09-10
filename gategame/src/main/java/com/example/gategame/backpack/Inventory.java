@@ -1,8 +1,7 @@
-package backpack;
+package com.example.gategame.backpack;
 
-import equipment.HpPotion;
-import equipment.NormalWeapon;
-import equipment.Potion;
+import com.example.gategame.equipment.HpPotion;
+import com.example.gategame.equipment.NormalWeapon;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,12 +37,14 @@ public class Inventory {
         }
     }
     public Item createWeapon(int id, String name, int power) {
-        Item newItem = new NormalWeapon(id, name, power); // Simplified creation logic
+        // create and add to the inventory
+        Item newItem = new NormalWeapon(id, name, power);
         allItems.add(newItem);
         return newItem;
     }
 
     public Item createPotion(int id, String name, int power) {
+        // create and add to the inventory
         Item newItem = new HpPotion(id, name, power);
         allItems.add(newItem);
         return newItem;

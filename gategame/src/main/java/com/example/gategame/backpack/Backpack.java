@@ -1,4 +1,4 @@
-package backpack;
+package com.example.gategame.backpack;
 
 /**
  * @author Yeming Chen

@@ -1,6 +1,6 @@
-package equipment;
+package com.example.gategame.equipment;
 
-import backpack.Item;
+import com.example.gategame.backpack.Item;
 
 /**
  * @author Yeming Chen

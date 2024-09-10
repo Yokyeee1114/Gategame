@@ -1,6 +1,6 @@
-package equipment;
+package com.example.gategame.equipment;
 
-import character.Role;
+import com.example.gategame.role.Role;
 
 /**
  * @author Yeming Chen
