@@ -1,3 +1,5 @@
+image: openjdk:17-oracle
+
 stages:
   - build
   - test
