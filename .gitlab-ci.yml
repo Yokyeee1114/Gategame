@@ -26,6 +26,6 @@ gradle-test:
     reports:
       junit: build/test-results/test/TEST-*.xml
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
 
 
