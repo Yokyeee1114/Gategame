@@ -1,9 +1,11 @@
-public class Map {
+package com.example.gategame.map;
+
+public class GameMap {
     private char[][] grid;
     private int rows;
     private int cols;
 
-    public Map(String[] mapData) {
+    public GameMap(String[] mapData) {
         this.rows = mapData.length;
         this.cols = mapData[0].length();
         this.grid = new char[rows][cols];
