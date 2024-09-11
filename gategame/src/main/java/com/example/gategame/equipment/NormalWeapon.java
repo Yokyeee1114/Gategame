@@ -28,8 +28,22 @@ public class NormalWeapon implements Weapon{
         System.out.println(name + "equipped");
     }
 
+    @Override
+    public int getId() {
+        return id;
+    }
+
     public int getPower() {
         // additional atk during fight
         return power;
+    }
+
+    @Override
+    public String toString() {
+        return "NormalWeapon{" +
+                "name='" + name + '\'' +
+                ", power=" + power +
+                ", id=" + id +
+                '}';
     }
 }

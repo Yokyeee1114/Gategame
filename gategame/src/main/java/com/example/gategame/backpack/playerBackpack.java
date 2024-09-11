@@ -11,7 +11,6 @@ import java.util.List;
  */
 public class playerBackpack implements Backpack {
     Role role;
-    private Inventory inventory;
     private List<Item> items;
 
 
@@ -35,21 +34,28 @@ public class playerBackpack implements Backpack {
         return true;
     }
 
+    /**
+     * use item in the backpack
+     * @param id the index of item
+     * @return true if successful; false otherwise.
+     */
     public boolean useItem(int id) {
-        if(id >= 0 && id < items.size()) {
-            Item item = items.get(id);
-            items.remove(id);
-            System.out.println("item " + item.getName() + " removed");
-            item.use(role);
-            return true;
+        for(Item item : items){
+            if (item.getId() == id){
+                items.remove(item);
+                System.out.println("item " + item.getName() + " removed");
+                item.use(role);
+                return true;
+            }
         }
+        System.out.println("item " + id + " not found");
         return false;
     }
 
     @Override
     public void displayItem() {
         System.out.println("playerBackpack{" +
-                "character=" + role +
+                "character=" + role.getName() +
                 ", items=" + items +
                 '}');
     }

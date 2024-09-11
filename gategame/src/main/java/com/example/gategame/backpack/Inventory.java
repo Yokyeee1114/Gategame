@@ -3,10 +3,7 @@ package com.example.gategame.backpack;
 import com.example.gategame.equipment.HpPotion;
 import com.example.gategame.equipment.NormalWeapon;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author Yeming Chen
@@ -15,11 +12,10 @@ import java.util.Map;
 public class Inventory {
     private List<Item> allItems;  // List to hold items
     private static Inventory inventory = null;
-    private Map<String, Backpack> backpacks;
+    private static int nextId = 0; // generate id of next item
 
     public Inventory() {
         this.allItems = new ArrayList<>();
-        this.backpacks = new HashMap<>();
     }
 
     public static Inventory getInventory() {
@@ -36,37 +32,27 @@ public class Inventory {
             System.out.println("item " + item.getName() + " added");
         }
     }
-    public Item createWeapon(int id, String name, int power) {
+    public Item createWeapon(String name, int power) {
         // create and add to the inventory
+        int id = nextId++;
         Item newItem = new NormalWeapon(id, name, power);
         allItems.add(newItem);
         return newItem;
     }
 
-    public Item createPotion(int id, String name, int power) {
+    public Item createPotion(String name, int power) {
         // create and add to the inventory
+        int id = nextId++;
         Item newItem = new HpPotion(id, name, power);
         allItems.add(newItem);
         return newItem;
     }
 
-    public void registerBackpack(String identifier, Backpack backpack) {
-        backpacks.put(identifier, backpack);
-    }
 
-    public Backpack getBackpacks(String identifier) {
-        if (backpacks.containsKey(identifier)) {
-            return backpacks.get(identifier);
-        }
-        return null;
-    }
-
-    public void addItemToBackpack(String identifier, int id) {
-        if (backpacks.containsKey(identifier)) {
+    public void addItemToBackpack(Backpack backpack, int id) {
             Item item = allItems.get(id);
-            backpacks.get(identifier).addItem(item);
-            System.out.println("Global Inventory: Added " + item.getName() + " to " + identifier);
-        }
+            backpack.addItem(item);
+            System.out.println(item.getName() + "added to backpack" );
     }
 
 

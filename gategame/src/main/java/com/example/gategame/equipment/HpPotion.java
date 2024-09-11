@@ -27,4 +27,18 @@ public class HpPotion implements Potion{
         //character.increaseHP(power);
         System.out.println("You drink the " + name);
     }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        return "HpPotion{" +
+                "name='" + name + '\'' +
+                ", power=" + power +
+                ", id=" + id +
+                '}';
+    }
 }

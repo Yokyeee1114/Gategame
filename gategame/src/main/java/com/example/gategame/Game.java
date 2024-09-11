@@ -12,12 +12,12 @@ public class Game {
 
     public void initInventory(){
         // add some sample items
-        inventory.createPotion(0,"Small Healing Potion", 5);
-        inventory.createPotion(1,"Medium Healing Potion", 10);
-        inventory.createPotion(2,"Large Healing Potion", 20);
-        inventory.createWeapon(3,"Small Sword", 3);
-        inventory.createWeapon(4,"Long Sword", 5);
-        inventory.createWeapon(5,"Big Sword", 10);
+        inventory.createPotion("Small Healing Potion", 5);
+        inventory.createPotion("Medium Healing Potion", 10);
+        inventory.createPotion("Large Healing Potion", 20);
+        inventory.createWeapon("Small Sword", 3);
+        inventory.createWeapon("Long Sword", 5);
+        inventory.createWeapon("Big Sword", 10);
         System.out.println(inventory);
     }
 
@@ -28,10 +28,8 @@ public class Game {
         Role player = new Player("player", " ", 10, 100);
         game.initInventory();
         Inventory inventory = Inventory.getInventory();
-        inventory.registerBackpack("playerBag", new playerBackpack(player)); //register a backpack
-        inventory.addItemToBackpack("playerBag", 0); // add a potion
-        System.out.println(inventory);
-        Backpack backpack = inventory.getBackpacks("playerBag");
-        backpack.displayItem();
+        Backpack playerBackpack = new playerBackpack(player);
+        inventory.addItemToBackpack(playerBackpack, 0); // add a potion
+        playerBackpack.displayItem();
     }
 }
