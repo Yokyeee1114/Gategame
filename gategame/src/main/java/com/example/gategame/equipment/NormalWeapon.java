@@ -39,6 +39,11 @@ public class NormalWeapon implements Weapon{
     }
 
     @Override
+    public Integer getDamage() {
+        return power;
+    }
+
+    @Override
     public String toString() {
         return "NormalWeapon{" +
                 "name='" + name + '\'' +

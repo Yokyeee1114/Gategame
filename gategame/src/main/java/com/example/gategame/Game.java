@@ -2,7 +2,7 @@ package com.example.gategame;
 
 import com.example.gategame.backpack.Backpack;
 import com.example.gategame.backpack.Inventory;
-import com.example.gategame.backpack.playerBackpack;
+import com.example.gategame.backpack.PlayerBackpack;
 import com.example.gategame.role.Role;
 import com.example.gategame.role.Player;
 
@@ -28,7 +28,7 @@ public class Game {
         Role player = new Player("player", " ", 10, 100);
         game.initInventory();
         Inventory inventory = Inventory.getInventory();
-        Backpack playerBackpack = new playerBackpack(player);
+        Backpack playerBackpack = new PlayerBackpack(player);
         inventory.addItemToBackpack(playerBackpack, 0); // add a potion
         playerBackpack.displayItem();
     }
