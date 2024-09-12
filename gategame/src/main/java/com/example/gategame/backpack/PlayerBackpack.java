@@ -9,12 +9,12 @@ import java.util.List;
  * @author Yeming Chen
  * backpack for player, and add/use item inside
  */
-public class playerBackpack implements Backpack {
+public class PlayerBackpack implements Backpack {
     Role role;
     private List<Item> items;
 
 
-    public playerBackpack(Role role){
+    public PlayerBackpack(Role role){
         this.role = role;
         this.items = new ArrayList<Item>();
     }
