@@ -2,6 +2,7 @@ package com.example.gategame.backpack;
 
 import com.example.gategame.equipment.HpPotion;
 import com.example.gategame.equipment.NormalWeapon;
+import com.example.gategame.equipment.Weapon;
 
 import java.util.*;
 
@@ -32,10 +33,12 @@ public class Inventory {
             System.out.println("item " + item.getName() + " added");
         }
     }
-    public Item createWeapon(String name, int power) {
+
+
+    public Weapon createWeapon(String name, int power) {
         // create and add to the inventory
         int id = nextId++;
-        Item newItem = new NormalWeapon(id, name, power);
+        Weapon newItem = new NormalWeapon(id, name, power);
         allItems.add(newItem);
         return newItem;
     }
@@ -55,7 +58,13 @@ public class Inventory {
             System.out.println(item.getName() + "added to backpack" );
     }
 
-
+//    /**
+//     *
+//     * @return backpack created for player role
+//     */
+//    public Backpack createPlayerBackpack(){
+//        return  new PlayerBackpack();
+//    }
 
     // Method to view all items in the inventory
     public List<Item> getAllItems() {
