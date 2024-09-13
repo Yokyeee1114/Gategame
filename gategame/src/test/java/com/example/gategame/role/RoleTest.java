@@ -1,5 +1,7 @@
 package com.example.gategame.role;
 
+import com.example.gategame.backpack.Inventory;
+import com.example.gategame.equipment.Potion;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -61,5 +63,18 @@ class RoleTest {
         assertEquals(80, opponent.getHealth());
         opponent.attack(role);
         assertEquals(90, role.getHealth());
+    }
+
+
+    @Test
+    @DisplayName("Use HpPotion to restore health")
+    void restoreHealth() {
+        Role role = new Role("player", "", 20, 100);
+        role.setHealth(50);
+        Potion potion = Inventory.getInventory().createPotion("Small Curing Potion", 30);
+        potion.use(role);
+        assertEquals(80, role.getHealth());
+        potion.use(role);
+        assertEquals(100, role.getHealth());
     }
 }

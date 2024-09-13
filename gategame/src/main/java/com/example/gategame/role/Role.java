@@ -94,4 +94,12 @@ public class Role {
         return result;
     }
 
+    /**
+     *
+     * @param amount the amount of healing point
+     */
+    public void restoreHealth(Integer amount){
+        setHealth(health += amount);
+    }
+
 }
