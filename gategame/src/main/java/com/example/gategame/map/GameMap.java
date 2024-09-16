@@ -1,5 +1,7 @@
 package com.example.gategame.map;
 
+import com.example.gategame.control.Location;
+
 public class GameMap {
     private char[][] grid;
     private int rows;
@@ -19,13 +21,12 @@ public class GameMap {
 
     /**
      *
-     * @param playerRow
-     * @param playerCol
+     * @param playerLocation
      */
-    public void displayMap(int playerRow, int playerCol) {
+    public void displayMap(Location playerLocation) {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                if (i == playerRow && j == playerCol) {
+                if (i == playerLocation.getRow() && j == playerLocation.getCol()) {
                     System.out.print('P');
                 } else {
                     System.out.print(grid[i][j]);
@@ -37,12 +38,16 @@ public class GameMap {
 
     /**
      *
-     * @param row
-     * @param col
+     * @param
      * @return
      */
-    public boolean isValidMove(int row, int col) {
-        return row >= 0 && row < rows && col >= 0 && col < cols && grid[row][col] == '.';
+    public  boolean isValidMove(Location playerLocation) {
+        return playerLocation.getRow() >= 0 && playerLocation.getRow() < rows && playerLocation.getCol() >= 0 && playerLocation.getCol()
+                < cols && grid[playerLocation.getRow()][playerLocation.getCol()] == '.';
+    }
+
+    public char getTarget(Location location){
+        return this.grid[location.getRow()][location.getCol()];
     }
 
     public char[][] getGrid() {
