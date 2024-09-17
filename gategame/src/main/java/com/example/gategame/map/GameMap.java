@@ -4,6 +4,8 @@ public class GameMap {
     private char[][] grid;
     private int rows;
     private int cols;
+    private int doorRow;
+    private int doorCol;
 
     public GameMap(String[] mapData) {
         this.rows = mapData.length;
@@ -13,6 +15,10 @@ public class GameMap {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 grid[i][j] = mapData[i].charAt(j);
+                if (grid[i][j] == 'D') {
+                    doorRow = i;
+                    doorCol = j;
+                }
             }
         }
     }
@@ -42,7 +48,10 @@ public class GameMap {
      * @return
      */
     public boolean isValidMove(int row, int col) {
-        return row >= 0 && row < rows && col >= 0 && col < cols && grid[row][col] == '.';
+        return row >= 0 && row < rows && col >= 0 && col < cols && (grid[row][col] == '.' || grid[row][col] == 'D');
+    }
+    public boolean isDoor(int row, int col) {
+        return row == doorRow && col == doorCol;
     }
 
     public char[][] getGrid() {
