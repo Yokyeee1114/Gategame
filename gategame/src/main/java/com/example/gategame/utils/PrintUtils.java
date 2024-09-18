@@ -1,4 +1,4 @@
-package utils;
+package com.example.gategame.utils;
 
 /**
  * @author Hao Ye(u7981083)

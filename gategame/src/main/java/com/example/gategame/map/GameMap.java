@@ -1,11 +1,11 @@
 package com.example.gategame.map;
 
-import com.example.gategame.control.Location;
-
 public class GameMap {
     private char[][] grid;
     private int rows;
     private int cols;
+    private int doorRow;
+    private int doorCol;
 
     public GameMap(String[] mapData) {
         this.rows = mapData.length;
@@ -15,18 +15,23 @@ public class GameMap {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 grid[i][j] = mapData[i].charAt(j);
+                if (grid[i][j] == 'D') {
+                    doorRow = i;
+                    doorCol = j;
+                }
             }
         }
     }
 
     /**
      *
-     * @param playerLocation
+     * @param playerRow
+     * @param playerCol
      */
-    public void displayMap(Location playerLocation) {
+    public void displayMap(int playerRow, int playerCol) {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                if (i == playerLocation.getRow() && j == playerLocation.getCol()) {
+                if (i == playerRow && j == playerCol) {
                     System.out.print('P');
                 } else {
                     System.out.print(grid[i][j]);
@@ -38,16 +43,15 @@ public class GameMap {
 
     /**
      *
-     * @param
+     * @param row
+     * @param col
      * @return
      */
-    public  boolean isValidMove(Location playerLocation) {
-        return playerLocation.getRow() >= 0 && playerLocation.getRow() < rows && playerLocation.getCol() >= 0 && playerLocation.getCol()
-                < cols && grid[playerLocation.getRow()][playerLocation.getCol()] == '.';
+    public boolean isValidMove(int row, int col) {
+        return row >= 0 && row < rows && col >= 0 && col < cols && (grid[row][col] == '.' || grid[row][col] == 'D');
     }
-
-    public char getTarget(Location location){
-        return this.grid[location.getRow()][location.getCol()];
+    public boolean isDoor(int row, int col) {
+        return row == doorRow && col == doorCol;
     }
 
     public char[][] getGrid() {

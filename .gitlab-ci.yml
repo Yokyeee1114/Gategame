@@ -1,0 +1,31 @@
+image: openjdk:17-oracle
+
+stages:
+  - build
+  - test
+
+gradle-build:
+  stage: build
+  tags:
+    - comp2120
+  script:
+    - cd gategame
+    - ./gradlew assemble
+  artifacts:
+    paths:
+      - gategame/build/
+
+gradle-test:
+  stage: test
+  tags:
+    - comp2120
+  script:
+    - cd gategame
+    - ./gradlew test
+  artifacts:
+    reports:
+      junit: gategame/build/test-results/test/TEST-*.xml
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+
+
