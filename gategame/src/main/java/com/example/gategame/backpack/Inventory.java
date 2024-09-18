@@ -5,7 +5,8 @@ import com.example.gategame.equipment.NormalWeapon;
 import com.example.gategame.equipment.Potion;
 import com.example.gategame.equipment.Weapon;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Yeming Chen
@@ -52,6 +53,9 @@ public class Inventory {
         return newItem;
     }
 
+    public PlayerBackpack createBackpack() {
+        return new PlayerBackpack();
+    }
 
     public void addItemToBackpack(Backpack backpack, int id) {
             Item item = allItems.get(id);

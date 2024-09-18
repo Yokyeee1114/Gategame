@@ -1,7 +1,5 @@
 package com.example.gategame.backpack;
 
-import com.example.gategame.role.Role;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,13 +8,13 @@ import java.util.List;
  * backpack for player, and add/use item inside
  */
 public class PlayerBackpack implements Backpack {
-    Role role;
+    //    Role role;
     private List<Item> items;
 
 
-    public PlayerBackpack(Role role){
-        this.role = role;
-        this.items = new ArrayList<Item>();
+    public PlayerBackpack() {
+//        this.role = role;
+        this.items = new ArrayList<>();
     }
 
     @Override
@@ -44,7 +42,7 @@ public class PlayerBackpack implements Backpack {
             if (item.getId() == id){
                 items.remove(item);
                 System.out.println("item " + item.getName() + " removed");
-                item.use(role);
+//                item.use(role);
                 return true;
             }
         }
@@ -55,9 +53,14 @@ public class PlayerBackpack implements Backpack {
     @Override
     public void displayItem() {
         System.out.println("playerBackpack{" +
-                "character=" + role.getName() +
+//                "character=" + role.getName() +
                 ", items=" + items +
                 '}');
+    }
+
+    @Override
+    public boolean containsItem(Item item) {
+        return items.contains(item);
     }
 
 }
