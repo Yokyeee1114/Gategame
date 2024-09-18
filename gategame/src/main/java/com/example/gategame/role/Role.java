@@ -60,8 +60,13 @@ public class Role {
         }
     }
 
+    /**
+     * Whenever player raises his maxHealth, his health get full restored.
+     * @param maxHealth raise maxHealth
+     */
     public void setMaxHealth(Integer maxHealth) {
         this.maxHealth = maxHealth;
+        this.health = maxHealth;
     }
 
     /**
