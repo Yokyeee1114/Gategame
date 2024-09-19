@@ -1,5 +1,7 @@
 package com.example.gategame.map;
 
+import com.example.gategame.control.Location;
+
 public class GameMap {
     private char[][] grid;
     private int rows;
@@ -39,6 +41,27 @@ public class GameMap {
             }
             System.out.println();
         }
+    }
+
+    public void displayMap(Location playerLocation) {
+        int playerRow = playerLocation.getRow();
+        int playerCol = playerLocation.getCol();
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (i == playerRow && j == playerCol) {
+                    System.out.print('P');
+                } else {
+                    System.out.print(grid[i][j]);
+                }
+            }
+            System.out.println();
+        }
+    }
+
+    public boolean isValidMove(Location playerLocation) {
+        int row = playerLocation.getRow();
+        int col = playerLocation.getCol();
+        return row >= 0 && row < rows && col >= 0 && col < cols && (grid[row][col] == '.' || grid[row][col] == 'D');
     }
 
     /**
