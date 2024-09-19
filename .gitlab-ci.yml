@@ -11,9 +11,9 @@ gradle-build:
   script:
     - cd gategame
     - ./gradlew assemble
-  artifacts:
-    paths:
-      - gategame/build/
+  # artifacts:
+  #   paths:
+  #     - gategame/build/
 
 gradle-test:
   stage: test
@@ -22,9 +22,9 @@ gradle-test:
   script:
     - cd gategame
     - ./gradlew test
-  artifacts:
-    reports:
-      junit: gategame/build/test-results/test/TEST-*.xml
+  # artifacts:
+  #   reports:
+  #     junit: gategame/build/test-results/test/TEST-*.xml
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
 
