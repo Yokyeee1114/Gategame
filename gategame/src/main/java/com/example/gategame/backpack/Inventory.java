@@ -2,9 +2,11 @@ package com.example.gategame.backpack;
 
 import com.example.gategame.equipment.HpPotion;
 import com.example.gategame.equipment.NormalWeapon;
+import com.example.gategame.equipment.Potion;
 import com.example.gategame.equipment.Weapon;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Yeming Chen
@@ -43,14 +45,17 @@ public class Inventory {
         return newItem;
     }
 
-    public Item createPotion(String name, int power) {
+    public Potion createPotion(String name, int power) {
         // create and add to the inventory
         int id = nextId++;
-        Item newItem = new HpPotion(id, name, power);
+        Potion newItem = new HpPotion(id, name, power);
         allItems.add(newItem);
         return newItem;
     }
 
+    public PlayerBackpack createBackpack() {
+        return new PlayerBackpack();
+    }
 
     public void addItemToBackpack(Backpack backpack, int id) {
             Item item = allItems.get(id);

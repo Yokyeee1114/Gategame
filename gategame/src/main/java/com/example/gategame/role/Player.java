@@ -1,6 +1,7 @@
 package com.example.gategame.role;
 
 import com.example.gategame.backpack.Backpack;
+import com.example.gategame.backpack.Inventory;
 import com.example.gategame.equipment.Weapon;
 
 /**
@@ -9,10 +10,11 @@ import com.example.gategame.equipment.Weapon;
 public class Player extends Role {
 
     Weapon weapon;
-//    Backpack backpack;
+    Backpack backpack;
 
     public Player(String name, String description, Integer power, Integer maxHealth) {
         super(name, description, power, maxHealth);
+        this.backpack = Inventory.getInventory().createBackpack();
     }
 
     public Weapon getWeapon() {
@@ -24,9 +26,9 @@ public class Player extends Role {
      * @param weapon the weapon player wants to switch to
      */
     public void setWeapon(Weapon weapon) {
-//        if(weapon != null){
-//            backpack.addItem(weapon);
-//        }
+        if (weapon != null) {
+            backpack.addItem(weapon);
+        }
         this.weapon = weapon;
     }
 

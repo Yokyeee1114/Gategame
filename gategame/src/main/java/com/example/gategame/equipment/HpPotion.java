@@ -1,6 +1,7 @@
 package com.example.gategame.equipment;
 
 import com.example.gategame.role.Role;
+import com.example.gategame.utils.PrintUtils;
 
 /**
  * @author Yeming Chen
@@ -23,9 +24,9 @@ public class HpPotion implements Potion{
 
     @Override
     public void use(Role role) {
-        // player gain HP
-        //character.increaseHP(power);
-        System.out.println("You drink the " + name);
+        Integer oldHealth = role.getHealth();
+        role.restoreHealth(power);
+        PrintUtils.print("%s used %s, restored %s HP".formatted(role.getName(),this.name, role.getHealth() - oldHealth));
     }
 
     @Override
