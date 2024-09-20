@@ -2,6 +2,7 @@ package com.example.gategame.role;
 
 import com.example.gategame.backpack.Backpack;
 import com.example.gategame.backpack.Inventory;
+import com.example.gategame.backpack.PlayerBackpack;
 import com.example.gategame.equipment.Weapon;
 
 /**
@@ -10,7 +11,7 @@ import com.example.gategame.equipment.Weapon;
 public class Player extends Role {
 
     Weapon weapon;
-    Backpack backpack;
+    PlayerBackpack backpack;
 
     public Player(String name, String description, Integer power, Integer maxHealth) {
         super(name, description, power, maxHealth);
