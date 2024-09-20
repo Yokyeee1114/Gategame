@@ -4,6 +4,7 @@ import com.example.gategame.backpack.Inventory;
 import com.example.gategame.backpack.Item;
 import com.example.gategame.equipment.Potion;
 import com.example.gategame.equipment.Weapon;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,8 +15,8 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class BackPackTest {
 
-    Inventory inventory = Inventory.getInventory();
-    Player player = new Player("player", "", 10, 10);
+    Inventory inventory;
+    Player player;
     public void initInventory(){
         // add some sample items
         inventory.createPotion("Small Healing Potion", 5);
@@ -29,10 +30,15 @@ public class BackPackTest {
             player.backpack.addItem(i);
         }
     }
+    @BeforeEach
+    public void setUp() {
+        inventory = Inventory.getInventory();
+        player = new Player("player", "", 10, 10);
+        initPlayerBackPack();
+    }
 
     @Test
     void testGetPotion() {
-        initPlayerBackPack();
         assertEquals(inventory.getAllItems().get(0), player.backpack.getPotions().get(0));
         assertEquals(inventory.getAllItems().get(2), player.backpack.getPotions().get(1));
 
@@ -40,14 +46,12 @@ public class BackPackTest {
 
     @Test
     void testGetWeapon() {
-        initPlayerBackPack();
         player.backpack.getWeapons();
         assertEquals(inventory.getAllItems().get(1), player.backpack.getWeapons().get(0));
     }
 
     @Test
     void  mixTest(){
-        initPlayerBackPack();
         for (Item i : player.backpack.getPotions()) {
             assertInstanceOf(Potion.class, i);
             assertFalse(i instanceof Weapon);
