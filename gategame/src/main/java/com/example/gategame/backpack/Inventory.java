@@ -7,6 +7,7 @@ import com.example.gategame.equipment.Weapon;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * @author Yeming Chen
@@ -61,6 +62,31 @@ public class Inventory {
             Item item = allItems.get(id);
             backpack.addItem(item);
             System.out.println(item.getName() + "added to backpack" );
+    }
+
+    /**
+     * Generate random item for backpack as loot.
+     * @param backpack the backpack used to add loot
+     * @param minPower min power of the generated loot
+     * @param maxPower max power of the generated loot
+     */
+    public void generateLoot(Backpack backpack, int minPower, int maxPower) {
+        Random random = new Random();
+        int type = random.nextInt(2);
+        String name;
+        int power;
+
+        if (type == 0) { // weapon
+            name = "Small Sword"; // might need to change the name later
+            power = random.nextInt(minPower, maxPower);
+            Weapon newItem = createWeapon(name, power);
+            backpack.addItem(newItem);
+        } else { // potion
+            name = "Small HP Potion"; // might need to change the name later
+            power = random.nextInt(minPower, maxPower);
+            Potion newItem = createPotion(name, power);
+            backpack.addItem(newItem);
+        }
     }
 
 //    /**
