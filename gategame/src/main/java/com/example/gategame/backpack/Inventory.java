@@ -66,6 +66,7 @@ public class Inventory {
 
     /**
      * Generate random item for backpack as loot.
+     * if minPower and maxPower is in unreasonable range, still generate an item in valid range.
      * @param backpack the backpack used to add loot
      * @param minPower min power of the generated loot
      * @param maxPower max power of the generated loot
@@ -75,6 +76,10 @@ public class Inventory {
         int type = random.nextInt(2);
         String name;
         int power;
+        minPower = Math.max(minPower, 1); // avoid non-positive value;
+        if(maxPower < minPower) { // if max < min, set max to min + 5;
+            maxPower = minPower + 5;
+        }
 
         if (type == 0) { // weapon
             name = "Small Sword"; // might need to change the name later
