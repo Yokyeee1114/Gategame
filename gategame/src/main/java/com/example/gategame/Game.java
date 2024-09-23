@@ -3,8 +3,6 @@ package com.example.gategame;
 import com.example.gategame.backpack.Backpack;
 import com.example.gategame.backpack.Inventory;
 import com.example.gategame.backpack.PlayerBackpack;
-import com.example.gategame.role.Role;
-import com.example.gategame.role.Player;
 
 // sample game class for testing purpose, might need to modify later
 public class Game {
@@ -25,10 +23,10 @@ public class Game {
     public static void main(String[] args) {
         // test sample usage
         Game game = new Game();
-        Role player = new Player("player", " ", 10, 100);
+//        Role player = new Player("player", " ", 10, 100);
         game.initInventory();
         Inventory inventory = Inventory.getInventory();
-        Backpack playerBackpack = new PlayerBackpack(player);
+        Backpack playerBackpack = new PlayerBackpack();
         inventory.addItemToBackpack(playerBackpack, 0); // add a potion
         playerBackpack.displayItem();
     }
