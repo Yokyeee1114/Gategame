@@ -14,6 +14,7 @@ class GameMapTest {
             "#.......#",
             "#########"
     };
+
     @Test
     public void testMapCreation() {
         map = new GameMap(mapData);
@@ -22,6 +23,7 @@ class GameMapTest {
 
     @Test
     public void testValidMove() {
+        map = new GameMap(mapData);
         assertTrue(map.isValidMove(1, 1));
         assertTrue(map.isValidMove(0, 4));
         assertFalse(map.isValidMove(0, 0));
@@ -30,12 +32,14 @@ class GameMapTest {
 
     @Test
     public void testDoorDetection() {
+        map = new GameMap(mapData);
         assertTrue(map.isDoor(0, 4));
         assertFalse(map.isDoor(1, 1));
     }
 
     @Test
     public void testAddMapObject() {
+        map = new GameMap(mapData);
         MapObject healingPack = new HealPackTest(1, 1);
         map.addMapObject(healingPack);
         assertEquals(healingPack, map.getObjectAt(1, 1));
@@ -43,6 +47,7 @@ class GameMapTest {
 
     @Test
     public void testMultipleMapObjects() {
+        map = new GameMap(mapData);
         MapObject healingPack = new HealPackTest(1, 1);
         MapObject weapon = new WeaponTest(2, 2);
         MapObject enemy = new EnemyTest(3, 3);
@@ -59,6 +64,7 @@ class GameMapTest {
 
     @Test
     public void testMapObjectSymbols() {
+        map = new GameMap(mapData);
         assertEquals('+', new HealPackTest(0, 0).getSymbol());
         assertEquals('W', new WeaponTest(0, 0).getSymbol());
         assertEquals('E', new EnemyTest(0, 0).getSymbol());
