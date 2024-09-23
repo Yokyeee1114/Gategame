@@ -11,7 +11,10 @@ public class GameMap {
     private int doorCol;
     private List<MapObject> mapObjects;
 
-    public GameMap(String[] mapData) {
+    private List<MapItem> mapItems;
+
+    public GameMap(String[] mapData, List<MapItem> mapItems) {
+        this.mapItems = mapItems;
         this.rows = mapData.length;
         this.cols = mapData[0].length();
         this.grid = new char[rows][cols];

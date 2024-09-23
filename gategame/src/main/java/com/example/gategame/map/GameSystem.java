@@ -29,7 +29,7 @@ public class GameSystem {
                 "#.#.#######.#.###",
                 "#...#.....#...###",
                 "###########.#####"
-        });
+        }, null);
         map1.addMapObject(new HealPackTest(1, 5));
         map1.addMapObject(new WeaponTest(3, 7));
         map1.addMapObject(new EnemyTest(5, 10));
@@ -47,7 +47,7 @@ public class GameSystem {
                 "#.##.#######.######",
                 "#................##",
                 "###################"
-        });
+        }, null);
         map2.addMapObject(new HealPackTest(1, 5));
         map2.addMapObject(new WeaponTest(3, 7));
         map2.addMapObject(new EnemyTest(5, 10));
@@ -68,7 +68,7 @@ public class GameSystem {
                 "#.##########.#.#.#.#.#.#",
                 "#............#...#.#.#D#",
                 "########################"
-        });
+        }, null);
         map3.addMapObject(new HealPackTest(1, 5));
         map3.addMapObject(new WeaponTest(3, 7));
         map3.addMapObject(new EnemyTest(5, 10));
