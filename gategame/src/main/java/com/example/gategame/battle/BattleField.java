@@ -2,7 +2,7 @@ package com.example.gategame.battle;
 
 import com.example.gategame.role.Monster;
 import com.example.gategame.role.Player;
-import com.example.gategame.utils.PrintUtils;
+//import com.example.gategame.utils.PrintUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,10 +28,10 @@ public class BattleField {
             }
         }
         // show the course of battle
-        PrintUtils.print("Battle Start: ");
-        for (String s : battleHistory) {
-            PrintUtils.print(s);
-        }
+//        PrintUtils.print("Battle Start: ");
+//        for (String s : battleHistory) {
+//            PrintUtils.print(s);
+//        }
     }
 
 

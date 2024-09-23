@@ -1,6 +1,7 @@
 package com.example.gategame.map;
 
-import com.example.gategame.control.Location;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameMap {
     private char[][] grid;
@@ -8,11 +9,13 @@ public class GameMap {
     private int cols;
     private int doorRow;
     private int doorCol;
+    private List<MapObject> mapObjects;
 
     public GameMap(String[] mapData) {
         this.rows = mapData.length;
         this.cols = mapData[0].length();
         this.grid = new char[rows][cols];
+        this.mapObjects = new ArrayList<>();
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
@@ -24,6 +27,9 @@ public class GameMap {
             }
         }
     }
+    public void addMapObject(MapObject obj) {
+        mapObjects.add(obj);
+    }
 
     /**
      *
@@ -31,37 +37,26 @@ public class GameMap {
      * @param playerCol
      */
     public void displayMap(int playerRow, int playerCol) {
+        char[][] displayGrid = new char[rows][cols];
+        for (int i = 0; i < rows; i++) {
+            displayGrid[i] = grid[i].clone();
+        }
+
+        // add the map Object
+        for (MapObject obj : mapObjects) {
+            displayGrid[obj.getRow()][obj.getCol()] = obj.getSymbol();
+        }
+
+        // add the player
+        displayGrid[playerRow][playerCol] = 'P';
+
+
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                if (i == playerRow && j == playerCol) {
-                    System.out.print('P');
-                } else {
-                    System.out.print(grid[i][j]);
-                }
+                System.out.print(displayGrid[i][j]);
             }
             System.out.println();
         }
-    }
-
-    public void displayMap(Location playerLocation) {
-        int playerRow = playerLocation.getRow();
-        int playerCol = playerLocation.getCol();
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                if (i == playerRow && j == playerCol) {
-                    System.out.print('P');
-                } else {
-                    System.out.print(grid[i][j]);
-                }
-            }
-            System.out.println();
-        }
-    }
-
-    public boolean isValidMove(Location playerLocation) {
-        int row = playerLocation.getRow();
-        int col = playerLocation.getCol();
-        return row >= 0 && row < rows && col >= 0 && col < cols && (grid[row][col] == '.' || grid[row][col] == 'D');
     }
 
     /**
@@ -73,8 +68,30 @@ public class GameMap {
     public boolean isValidMove(int row, int col) {
         return row >= 0 && row < rows && col >= 0 && col < cols && (grid[row][col] == '.' || grid[row][col] == 'D');
     }
+
+    /**
+     *
+     * @param row
+     * @param col
+     * @return
+     */
     public boolean isDoor(int row, int col) {
         return row == doorRow && col == doorCol;
+    }
+
+    /**
+     *
+     * @param row
+     * @param col
+     * @return
+     */
+    public MapObject getObjectAt(int row, int col) {
+        for (MapObject obj : mapObjects) {
+            if (obj.getRow() == row && obj.getCol() == col) {
+                return obj;
+            }
+        }
+        return null;
     }
 
     public char[][] getGrid() {
