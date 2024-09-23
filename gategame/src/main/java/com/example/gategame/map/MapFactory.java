@@ -31,7 +31,7 @@ public class MapFactory {
 
         // add items
 
-        return new GameMap(new String[]{}, items);
+        return new GameMap(items);
     }
 
 }

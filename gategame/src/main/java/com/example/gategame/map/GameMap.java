@@ -13,8 +13,14 @@ public class GameMap {
 
     private List<MapItem> mapItems;
 
-    public GameMap(String[] mapData, List<MapItem> mapItems) {
+    // generate map with items
+    public GameMap(List<MapItem> mapItems) {
         this.mapItems = mapItems;
+    }
+
+    ;
+
+    public GameMap(String[] mapData) {
         this.rows = mapData.length;
         this.cols = mapData[0].length();
         this.grid = new char[rows][cols];
