@@ -20,6 +20,10 @@
       }
     }
   ],
+  "lootConfig": {
+    "minPower": 5,
+    "maxPower": 20
+  },
   "items": [
     {
       "key": "1",

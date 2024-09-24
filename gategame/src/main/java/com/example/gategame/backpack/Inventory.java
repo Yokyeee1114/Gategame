@@ -1,6 +1,9 @@
 package com.example.gategame.backpack;
 
+import com.example.gategame.GameEngine;
 import com.example.gategame.equipment.*;
+import com.example.gategame.settings.GameConfigLoader;
+import com.example.gategame.settings.LootConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,9 +66,12 @@ public class Inventory {
      * @return a backpack with loot added
      */
     public Backpack createMonsterBackpack(List<String> types, Integer amount) {
+        LootConfig lootConfig = GameEngine.getInstance().getLootConfig();
+        int minPower = lootConfig.getMinPower();
+        int maxPower = lootConfig.getMaxPower();
         MonsterBackpack backpack = new MonsterBackpack();
         for (String type : types) {
-            generateLoot(backpack, type, 5, 15);
+            generateLoot(backpack, type, minPower, maxPower);
         }
         return backpack;
     }
@@ -88,10 +94,6 @@ public class Inventory {
         Random random = new Random();
         String name;
         int power;
-        minPower = Math.max(minPower, 1); // avoid non-positive value;
-        if(maxPower < minPower) { // if max < min, set max to min + 5;
-            maxPower = minPower + 5;
-        }
 
         switch (type) {
             case "W" -> { // weapon
