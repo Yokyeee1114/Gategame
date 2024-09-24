@@ -12,9 +12,6 @@ public class NormalWeapon extends GeneralItem implements Weapon{
         super(id, name, power);
     }
 
-    public NormalWeapon(String name, int power, int id, Location location) {
-        super(id, name, power, location);
-    }
 
     @Override
     public void use(Role role) {

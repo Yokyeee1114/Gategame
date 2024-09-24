@@ -14,9 +14,6 @@ public class HpPotion extends GeneralItem implements Potion{
         super(id, name, power);
     }
 
-    public HpPotion(int id, String name, int power, Location location) {
-        super(id, name, power, location);
-    }
 
     @Override
     public void use(Role role) {

@@ -11,6 +11,4 @@ public interface Item {
     String getName();
     void use(Role role);
     int getId();
-    boolean hasLocation();
-    Location getLocation();
 }

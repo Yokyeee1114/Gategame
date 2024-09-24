@@ -14,7 +14,6 @@ public class GeneralItem implements Item {
     private String name;
     private int power;
     private int id;
-    private Location location;
 
     public GeneralItem(int id, String name, int power) {
         this.name = name;
@@ -22,12 +21,6 @@ public class GeneralItem implements Item {
         this.id = id;
     }
 
-    public GeneralItem(int id, String name, int power, Location location) {
-        this.name = name;
-        this.power = power;
-        this.id = id;
-        this.location = location;
-    }
 
     @Override
     public String getName() {
@@ -48,13 +41,4 @@ public class GeneralItem implements Item {
         return power;
     }
 
-    @Override
-    public boolean hasLocation() {
-        return this.location != null;
-    }
-
-    @Override
-    public Location getLocation() {
-        return location;
-    }
 }
