@@ -11,6 +11,15 @@ public class GameMap {
     private int doorCol;
     private List<MapObject> mapObjects;
 
+    private List<MapItem> mapItems;
+
+    // generate map with items
+    public GameMap(List<MapItem> mapItems) {
+        this.mapItems = mapItems;
+    }
+
+    ;
+
     public GameMap(String[] mapData) {
         this.rows = mapData.length;
         this.cols = mapData[0].length();
