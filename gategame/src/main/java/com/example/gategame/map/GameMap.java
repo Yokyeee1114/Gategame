@@ -20,6 +20,10 @@ public class GameMap {
 
     ;
 
+    /**
+     * @ author Yuheng Li
+     * @ param mapData
+     */
     public GameMap(String[] mapData) {
         this.rows = mapData.length;
         this.cols = mapData[0].length();
@@ -39,9 +43,12 @@ public class GameMap {
     public void addMapObject(MapObject obj) {
         mapObjects.add(obj);
     }
+    public void removeMapObject(MapObject obj) {
+        mapObjects.remove(obj);
+    }
 
     /**
-     *
+     * @author Yuheng Li
      * @param playerRow
      * @param playerCol
      */
@@ -69,7 +76,7 @@ public class GameMap {
     }
 
     /**
-     *
+     * @author Yuheng Li
      * @param row
      * @param col
      * @return
@@ -79,7 +86,7 @@ public class GameMap {
     }
 
     /**
-     *
+     * @author Yuheng Li
      * @param row
      * @param col
      * @return
@@ -89,7 +96,7 @@ public class GameMap {
     }
 
     /**
-     *
+     * @author Yuheng Li
      * @param row
      * @param col
      * @return
