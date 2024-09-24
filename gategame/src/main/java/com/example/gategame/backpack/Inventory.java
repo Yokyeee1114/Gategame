@@ -1,9 +1,7 @@
 package com.example.gategame.backpack;
 
-import com.example.gategame.equipment.HpPotion;
-import com.example.gategame.equipment.NormalWeapon;
-import com.example.gategame.equipment.Potion;
-import com.example.gategame.equipment.Weapon;
+import com.example.gategame.equipment.*;
+import com.example.gategame.items.GateKey;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,22 +56,37 @@ public class Inventory {
         return new PlayerBackpack();
     }
 
+    /**
+     * create items to put the monster's backpack
+     *
+     * @param types  control what items to create
+     * @param amount control the number of created item
+     * @return a backpack with loot added
+     */
+    public Backpack createMonsterBackpack(List<String> types, Integer amount) {
+        MonsterBackpack backpack = new MonsterBackpack();
+        for (String type : types) {
+            generateLoot(backpack, type, 5, 15);
+        }
+        return backpack;
+    }
+
     public void addItemToBackpack(Backpack backpack, int id) {
-            Item item = allItems.get(id);
-            backpack.addItem(item);
-            System.out.println(item.getName() + "added to backpack" );
+        Item item = allItems.get(id);
+        backpack.addItem(item);
+        System.out.println(item.getName() + "added to backpack" );
     }
 
     /**
      * Generate random item for backpack as loot.
      * if minPower and maxPower is in unreasonable range, still generate an item in valid range.
      * @param backpack the backpack used to add loot
+     * @param type type of item
      * @param minPower min power of the generated loot
      * @param maxPower max power of the generated loot
      */
-    public void generateLoot(Backpack backpack, int minPower, int maxPower) {
+    public void generateLoot(Backpack backpack, String type, int minPower, int maxPower) {
         Random random = new Random();
-        int type = random.nextInt(2);
         String name;
         int power;
         minPower = Math.max(minPower, 1); // avoid non-positive value;
@@ -81,18 +94,27 @@ public class Inventory {
             maxPower = minPower + 5;
         }
 
-        if (type == 0) { // weapon
-            name = "Small Sword"; // might need to change the name later
-            power = random.nextInt(minPower, maxPower);
-            Weapon newItem = createWeapon(name, power);
-            backpack.addItem(newItem);
-        } else { // potion
-            name = "Small HP Potion"; // might need to change the name later
-            power = random.nextInt(minPower, maxPower);
-            Potion newItem = createPotion(name, power);
-            backpack.addItem(newItem);
+        switch (type) {
+            case "W" -> { // weapon
+                name = "Small Sword"; // might need to change the name later
+
+                power = random.nextInt(minPower, maxPower);
+                Weapon newItem = createWeapon(name, power);
+                backpack.addItem(newItem);
+            }
+            case "P" -> { // potion
+                name = "Small HP Potion"; // might need to change the name later
+
+                power = random.nextInt(minPower, maxPower);
+                Potion newItem = createPotion(name, power);
+                backpack.addItem(newItem);
+            }
+            case "K" -> { // key
+                name = "key";
+            }
         }
     }
+
 
 //    /**
 //     *

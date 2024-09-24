@@ -17,7 +17,7 @@ public class LootTest {
 
     @Test
     public void testGenerate() {
-        inventory.generateLoot(backpack, 0, 10);
+        inventory.generateLoot(backpack, "P", 0, 10);
         Item item = inventory.getAllItems().get(0);
         assertTrue(backpack.containsItem(item));
     }
