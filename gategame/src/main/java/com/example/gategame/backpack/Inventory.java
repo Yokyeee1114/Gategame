@@ -1,7 +1,6 @@
 package com.example.gategame.backpack;
 
 import com.example.gategame.equipment.*;
-import com.example.gategame.items.GateKey;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,9 +71,9 @@ public class Inventory {
     }
 
     public void addItemToBackpack(Backpack backpack, int id) {
-        Item item = allItems.get(id);
-        backpack.addItem(item);
-        System.out.println(item.getName() + "added to backpack" );
+            Item item = allItems.get(id);
+            backpack.addItem(item);
+            System.out.println(item.getName() + "added to backpack" );
     }
 
     /**

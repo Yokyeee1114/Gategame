@@ -9,6 +9,8 @@ import java.util.List;
 public class SettingsConfig implements Serializable {
 
     private List<LevelConfig> levels;
+    private MonstersConfig monstersConfig;
+
 
     public List<LevelConfig> getLevels() {
         return levels;
@@ -18,4 +20,11 @@ public class SettingsConfig implements Serializable {
         this.levels = levels;
     }
 
+    public MonstersConfig getMonstersConfig() {
+        return monstersConfig;
+    }
+
+    public void setMonstersConfig(MonstersConfig monstersConfig) {
+        this.monstersConfig = monstersConfig;
+    }
 }

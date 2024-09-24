@@ -1,16 +1,27 @@
 package com.example.gategame.role;
 
 
+import com.example.gategame.backpack.Backpack;
+import com.example.gategame.map.MapItem;
+
 /**
  * @author Hao Ye(u7981083)
  */
-public class Monster extends Role {
+public abstract class Monster extends Role implements MapItem {
 
-    public Monster(String name, String description, Integer power, Integer maxHealth) {
+    private Backpack backpack;
+
+    public Monster(String name, String description, Integer power, Integer maxHealth, Backpack backpack) {
         super(name, description, power, maxHealth);
     }
 
-//    public List<Item> dropLoot(){
-//        return null;
-//    }
+    @Override
+    public String toString() {
+        return String.format("%s: power(%s), health(%s)", getName(), getPower(), getHealth());
+    }
+
+    @Override
+    public void interact(Player player) {
+        System.out.printf("%s fighting with %s%n", player.getName(), getName());
+    }
 }
