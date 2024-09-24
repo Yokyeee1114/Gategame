@@ -8,10 +8,7 @@
       },
       "monsters": [
         {
-          "id": "Boss",
-          "loot": [
-            "1"
-          ]
+          "id": "Boss"
         }
       ]
     },
@@ -30,10 +27,36 @@
       "power": "10"
     }
   ],
-  "monsters": [
-    {
-      "name": "Boss",
-      "attack": 100
+  "monsters": {
+    "minor": {
+      "type": "Minor",
+      "lootItems": [
+        "P"
+      ],
+      "lootAmount": 1,
+      "power": 10,
+      "health": 50
+    },
+    "elite": {
+      "type": "Elite",
+      "lootItems": [
+        "P",
+        "W"
+      ],
+      "lootAmount": 2,
+      "power": 20,
+      "health": 100
+    },
+    "boss": {
+      "type": "Boss",
+      "lootItems": [
+        "P",
+        "W",
+        "K"
+      ],
+      "lootAmount": 3,
+      "power": 30,
+      "health": 200
     }
-  ]
+  }
 }

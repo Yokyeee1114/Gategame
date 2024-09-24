@@ -63,6 +63,19 @@ public class Inventory {
             System.out.println(item.getName() + "added to backpack" );
     }
 
+
+    /**
+     * create items to put the monster's backpack
+     *
+     * @param types  control what items to create
+     * @param amount control the number of created item
+     * @return
+     */
+    public Backpack createMonsterBackpack(List<String> types, Integer amount) {
+        // @TODO
+        return new PlayerBackpack();
+    }
+
 //    /**
 //     *
 //     * @return backpack created for player role
