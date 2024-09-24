@@ -1,0 +1,39 @@
+{
+  "levels": [
+    {
+      "level": 1,
+      "name": "The first level",
+      "gate": {
+        "isLocked": false
+      },
+      "monsters": [
+        {
+          "id": "Boss",
+          "loot": [
+            "1"
+          ]
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "name": "The second level",
+      "gate": {
+        "isLocked": true
+      }
+    }
+  ],
+  "items": [
+    {
+      "key": "1",
+      "name": "Small potion",
+      "power": "10"
+    }
+  ],
+  "monsters": [
+    {
+      "name": "Boss",
+      "attack": 100
+    }
+  ]
+}
