@@ -1,11 +1,14 @@
 package com.example.gategame.equipment;
 
+import com.example.gategame.backpack.Inventory;
+import com.example.gategame.map.MapItem;
+import com.example.gategame.role.Player;
 import com.example.gategame.role.Role;
 /**
  * @author Yeming Chen
  * Normal weapon is a kind of weapon can help player beat enermy.
  */
-public class NormalWeapon extends GeneralItem implements Weapon{
+public class NormalWeapon extends GeneralItem implements Weapon, MapItem {
 
     public NormalWeapon(int id, String name, int power) {
         super(id, name, power);
@@ -29,5 +32,15 @@ public class NormalWeapon extends GeneralItem implements Weapon{
     public String toString() {
         return super.getName() +
                 ", power=" + super.getPower();
+    }
+
+    @Override
+    public Character getSymbol() {
+        return 'W';
+    }
+
+    @Override
+    public void interact(Player player) {
+        player.getBackpack().addItem(this);
     }
 }

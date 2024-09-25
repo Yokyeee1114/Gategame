@@ -46,6 +46,9 @@ public class Player extends Role {
         return damage;
     }
 
+    public PlayerBackpack getBackpack() {
+        return backpack;
+    }
 //    public Backpack getBackpack() {
 //        return backpack;
 //    }
