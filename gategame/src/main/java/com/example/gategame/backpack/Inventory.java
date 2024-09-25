@@ -1,12 +1,13 @@
 package com.example.gategame.backpack;
 
-import com.example.gategame.equipment.HpPotion;
-import com.example.gategame.equipment.NormalWeapon;
-import com.example.gategame.equipment.Potion;
-import com.example.gategame.equipment.Weapon;
+import com.example.gategame.GameEngine;
+import com.example.gategame.equipment.*;
+import com.example.gategame.settings.GameConfigLoader;
+import com.example.gategame.settings.LootConfig;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * @author Yeming Chen
@@ -57,24 +58,64 @@ public class Inventory {
         return new PlayerBackpack();
     }
 
+    /**
+     * create items to put the monster's backpack
+     *
+     * @param types  control what items to create
+     * @param amount control the number of created item
+     * @return a backpack with loot added
+     */
+    public Backpack createMonsterBackpack(List<String> types, Integer amount) {
+        LootConfig lootConfig = GameEngine.getInstance().getLootConfig();
+        int minPower = lootConfig.getMinPower();
+        int maxPower = lootConfig.getMaxPower();
+        MonsterBackpack backpack = new MonsterBackpack();
+        for (String type : types) {
+            generateLoot(backpack, type, minPower, maxPower);
+        }
+        return backpack;
+    }
+
     public void addItemToBackpack(Backpack backpack, int id) {
             Item item = allItems.get(id);
             backpack.addItem(item);
             System.out.println(item.getName() + "added to backpack" );
     }
 
-
     /**
-     * create items to put the monster's backpack
-     *
-     * @param types  control what items to create
-     * @param amount control the number of created item
-     * @return
+     * Generate random item for backpack as loot.
+     * if minPower and maxPower is in unreasonable range, still generate an item in valid range.
+     * @param backpack the backpack used to add loot
+     * @param type type of item
+     * @param minPower min power of the generated loot
+     * @param maxPower max power of the generated loot
      */
-    public Backpack createMonsterBackpack(List<String> types, Integer amount) {
-        // @TODO
-        return new PlayerBackpack();
+    public void generateLoot(Backpack backpack, String type, int minPower, int maxPower) {
+        Random random = new Random();
+        String name;
+        int power;
+
+        switch (type) {
+            case "W" -> { // weapon
+                name = "Small Sword"; // might need to change the name later
+
+                power = random.nextInt(minPower, maxPower);
+                Weapon newItem = createWeapon(name, power);
+                backpack.addItem(newItem);
+            }
+            case "P" -> { // potion
+                name = "Small HP Potion"; // might need to change the name later
+
+                power = random.nextInt(minPower, maxPower);
+                Potion newItem = createPotion(name, power);
+                backpack.addItem(newItem);
+            }
+            case "K" -> { // key
+                name = "key";
+            }
+        }
     }
+
 
 //    /**
 //     *

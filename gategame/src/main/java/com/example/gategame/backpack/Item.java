@@ -1,5 +1,6 @@
 package com.example.gategame.backpack;
 
+import com.example.gategame.control.Location;
 import com.example.gategame.role.Role;
 
 /**
@@ -10,4 +11,5 @@ public interface Item {
     String getName();
     void use(Role role);
     int getId();
+    int getPower();
 }
