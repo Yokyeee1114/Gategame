@@ -46,11 +46,16 @@ public class Game {
 //            empty.remove(location);
             Location location = new Location(3,1);
             MinorMonster monster = new MinorMonster(20,50,null);
-            objects.put(location, (MapObject) new Enemy(location,monster));
+            Enemy enemy1 = new Enemy(location);
+            enemy1.setMonster(monster);
+            objects.put(location, (MapObject) enemy1);
 
         Location location2 = new Location(1,3);
         MinorMonster monster2 = new MinorMonster(20,50,null);
-        objects.put(location2, (MapObject) new Enemy(location2,monster2));
+        Enemy enemy2 = new Enemy(location2);
+        enemy2.setMonster(monster2);
+
+        objects.put(location2, (MapObject)enemy2);
 
         mapObjects.add(objects);
     }
