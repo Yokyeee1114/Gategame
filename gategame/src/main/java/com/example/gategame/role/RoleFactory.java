@@ -3,9 +3,14 @@ package com.example.gategame.role;
 import com.example.gategame.GameEngine;
 import com.example.gategame.backpack.Backpack;
 import com.example.gategame.backpack.Inventory;
+import com.example.gategame.backpack.Item;
+import com.example.gategame.backpack.PlayerBackpack;
+import com.example.gategame.settings.ItemConfig;
 import com.example.gategame.settings.MonsterConfig;
 import com.example.gategame.settings.MonstersConfig;
 import com.example.gategame.settings.PlayerConfig;
+
+import java.util.List;
 
 /**
  * @author Hao Ye(u7981083)
@@ -52,7 +57,15 @@ public class RoleFactory {
         if (playerConfig == null) {
             playerConfig = GameEngine.getInstance().getSettingsConfig().getPlayerConfig();
         }
-        return new Player(playerConfig.getName(), "", playerConfig.getPower(), playerConfig.getHealth());
+        Player player = new Player(playerConfig.getName(), "", playerConfig.getPower(), playerConfig.getHealth());
+        // initialize player backpack
+        List<ItemConfig> initialItems = playerConfig.getInitialItems();
+        if (initialItems != null) {
+            for (ItemConfig itemConfig : initialItems) {
+                player.getBackpack().addItem(itemConfig.createItem());
+            }
+        }
+        return player;
     }
 
 }

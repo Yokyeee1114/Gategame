@@ -80,6 +80,8 @@ import java.util.regex.Pattern;
                     gameMap.displayMap(location);
                 } else if (order == 'P') {
                     System.out.println(player.toString());
+                } else if (order == 'I') {
+                    player.getBackpack().displayItem();
                 }
             }
             mapObjects.set(stage-1,mapObject);

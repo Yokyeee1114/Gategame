@@ -62,6 +62,11 @@ public class PlayerBackpack implements Backpack {
         });
     }
 
+    /**
+     * remove item using id in the backpack
+     * @param id the index of item in the backpack, not the global index
+     * @return true is success, false otherwise.
+     */
     @Override
     public boolean removeItem(int id) {
         if(id >= items.size()) return false;
@@ -114,7 +119,7 @@ public class PlayerBackpack implements Backpack {
      * @param role to be affected
      */
     public void useItem(Item item, Role role) {
-        removeItem(item.getId());
+        items.remove(item);
         item.use(role);
     }
 

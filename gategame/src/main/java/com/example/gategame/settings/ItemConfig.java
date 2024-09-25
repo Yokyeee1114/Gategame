@@ -1,6 +1,7 @@
 package com.example.gategame.settings;
 
 import com.example.gategame.backpack.Inventory;
+import com.example.gategame.backpack.Item;
 
 /**
  * @author Yeming
@@ -37,13 +38,11 @@ public class ItemConfig {
     /**
      * create Item and add to inventory
      */
-    public void createItem() {
+    public Item createItem() {
         if ("potion".equals(type)) {
-            Inventory.getInventory().createPotion(name, power);
-            return;
+            return Inventory.getInventory().createPotion(name, power);
         } else if ("weapon".equals(type)) {
-            Inventory.getInventory().createWeapon(name, power);
-            return;
+            return Inventory.getInventory().createWeapon(name, power);
         }
         throw new IllegalArgumentException("Unknown item type: " + type);
     }

@@ -43,7 +43,7 @@ public class Inventory {
     public Weapon createWeapon(String name, int power) {
         // create and add to the inventory
         int id = nextId++;
-        Weapon newItem = new NormalWeapon(id, name, power);
+        NormalWeapon newItem = new NormalWeapon(id, name, power);
         allItems.add(newItem);
         return newItem;
     }
