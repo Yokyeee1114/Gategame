@@ -26,7 +26,7 @@ class PlayerTest {
         Player player = new Player("Test", "", 10, 100);
         Potion hpPotion = Inventory.getInventory().createPotion("Test", 10);
         player.backpack.addItem(hpPotion);
-        Monster monster = MonsterFactory.createMonster(MonsterType.MINOR);
+        Monster monster = RoleFactory.createMonster(MonsterType.MINOR);
         monster.attack(player);
         assertEquals(90, player.getHealth());
         boolean attacked = player.attack(monster);

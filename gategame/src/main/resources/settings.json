@@ -40,6 +40,11 @@
       "power": "10"
     }
   ],
+  "playerConfig": {
+    "name": "Player",
+    "power": 20,
+    "health": 100
+  },
   "monstersConfig": {
     "minor": {
       "type": "Minor",

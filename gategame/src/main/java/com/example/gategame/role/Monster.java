@@ -14,6 +14,7 @@ public class Monster extends Role implements MapItem {
 
     public Monster(String name, String description, Integer power, Integer maxHealth, Backpack backpack) {
         super(name, description, power, maxHealth);
+        this.backpack = backpack;
     }
 
     @Override

@@ -1,16 +1,17 @@
 package com.example.gategame;
 
 
-import com.example.gategame.battle.BattleField;
 import com.example.gategame.control.Control;
 import com.example.gategame.control.Location;
 import com.example.gategame.map.Enemy;
 import com.example.gategame.map.GameMap;
 import com.example.gategame.map.MapObject;
-import com.example.gategame.role.*;
-import com.example.gategame.Game;
+import com.example.gategame.role.Player;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Scanner;
 import java.util.regex.Pattern;
 
 
@@ -78,7 +79,7 @@ import java.util.regex.Pattern;
                 } else if (order == 'M') {
                     gameMap.displayMap(location);
                 } else if (order == 'P') {
-                    System.out.println("HP: "+player.getHealth()+"  ATK: "+player.getDamage());
+                    System.out.println(player.toString());
                 }
             }
             mapObjects.set(stage-1,mapObject);
@@ -100,7 +101,7 @@ import java.util.regex.Pattern;
             List<Location> locations = getEventLocation(mapObject);
             if(locations.contains(location)){
                 if(mapObject.get(location) instanceof Enemy){
-                    BattleField.battle(player,((Enemy) mapObject.get(location)).getMonster());
+                    ((Enemy) mapObject.get(location)).getMapItem().interact(player);
                 }
                 mapObject.remove(location);
             }
@@ -111,6 +112,7 @@ import java.util.regex.Pattern;
 
         public static void main(String[] args) {
 
+            GameEngine.getInstance().loadEngine();
 //            Enemy a = new Enemy(location, );
 //            HashMap<Location,MapObject> hashMap = new HashMap<>();
 //            hashMap.put(location, (MapObject) a);
