@@ -45,4 +45,8 @@ public class MonsterFactory {
         return monster;
     }
 
+    public static void main(String[] args) {
+        Monster a = createMonster(MonsterType.ELITE);
+    }
+
 }
