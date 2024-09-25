@@ -33,6 +33,10 @@ public class MonsterBackpack implements Backpack{
         return items;
     }
 
+    public void clearBackpack(){
+        items.clear();
+    }
+
     @Override
     public boolean containsItem(Item item) {
         return items.contains(item);

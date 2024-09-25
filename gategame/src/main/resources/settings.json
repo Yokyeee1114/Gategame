@@ -71,5 +71,19 @@
       "power": 30,
       "health": 200
     }
+  },
+  "inventoryConfig": {
+    "items": [
+      {
+        "type": "potion",
+        "name": "small Potion",
+        "power": 10
+      },
+      {
+        "type": "weapon",
+        "name": "small sword",
+        "power": 10
+      }
+    ]
   }
 }

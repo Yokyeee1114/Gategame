@@ -1,6 +1,7 @@
 package com.example.gategame.settings;
 
 import com.example.gategame.GameEngine;
+import com.example.gategame.backpack.Inventory;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -21,6 +22,7 @@ public class GameConfigLoader {
         Gson gson = new Gson();
         try (InputStream inputStream = classLoader.getResourceAsStream(GAME_ENGINE_PATH)) {
             config = gson.fromJson(new BufferedReader(new InputStreamReader(inputStream)), SettingsConfig.class);
+            config.getInventoryConfig().initializeInventory(); // config the inventory
         } catch (IOException e) {
             e.printStackTrace();
         }
