@@ -17,7 +17,7 @@ public class GameConfigLoader {
     public static final String GAME_ENGINE_PATH = "settings.json";
     public static SettingsConfig config;
 
-    public static void loadConfig() {
+    public static SettingsConfig loadConfig() {
         ClassLoader classLoader = GameEngine.class.getClassLoader();
         Gson gson = new Gson();
         try (InputStream inputStream = classLoader.getResourceAsStream(GAME_ENGINE_PATH)) {
@@ -26,6 +26,7 @@ public class GameConfigLoader {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return config;
     }
 
 }

@@ -1,0 +1,48 @@
+package com.example.gategame.role;
+
+import com.example.gategame.GameEngine;
+import com.example.gategame.backpack.Backpack;
+import com.example.gategame.backpack.Inventory;
+import com.example.gategame.settings.MonsterConfig;
+import com.example.gategame.settings.MonstersConfig;
+
+/**
+ * @author Hao Ye(u7981083)
+ * Used to create monsters
+ */
+public class MonsterFactory {
+
+    private static MonstersConfig monstersConfig;
+
+    /**
+     * create different type of monster based on config
+     *
+     * @param type
+     * @return
+     */
+    public static Monster createMonster(MonsterType type) {
+        if (monstersConfig == null) {
+            monstersConfig = GameEngine.getInstance().getMonsterConfig();
+        }
+        Monster monster = null;
+        switch (type) {
+            case MINOR -> {
+                MonsterConfig monsterConfig = monstersConfig.getMinor();
+                Backpack backpack = Inventory.getInventory().createMonsterBackpack(monsterConfig.getLootItems(), monsterConfig.getLootAmount());
+                monster = new MinorMonster(monsterConfig.getPower(), monsterConfig.getHealth(), backpack);
+            }
+            case ELITE -> {
+                MonsterConfig monsterConfig = monstersConfig.getElite();
+                Backpack backpack = Inventory.getInventory().createMonsterBackpack(monsterConfig.getLootItems(), monsterConfig.getLootAmount());
+                monster = new EliteMonster(monsterConfig.getPower(), monsterConfig.getHealth(), backpack);
+            }
+            case BOSS -> {
+                MonsterConfig monsterConfig = monstersConfig.getBoss();
+                Backpack backpack = Inventory.getInventory().createMonsterBackpack(monsterConfig.getLootItems(), monsterConfig.getLootAmount());
+                monster = new BossMonster(monsterConfig.getPower(), monsterConfig.getHealth(), backpack);
+            }
+        }
+        return monster;
+    }
+
+}
