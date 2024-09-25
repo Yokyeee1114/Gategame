@@ -1,9 +1,9 @@
 package com.example.gategame.backpack;
 
-import com.example.gategame.equipment.HpPotion;
-import com.example.gategame.equipment.NormalWeapon;
-import com.example.gategame.equipment.Potion;
-import com.example.gategame.equipment.Weapon;
+import com.example.gategame.GameEngine;
+import com.example.gategame.equipment.*;
+import com.example.gategame.settings.GameConfigLoader;
+import com.example.gategame.settings.LootConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,44 +68,36 @@ public class Inventory {
      * Generate random item for backpack as loot.
      * if minPower and maxPower is in unreasonable range, still generate an item in valid range.
      * @param backpack the backpack used to add loot
+     * @param type type of item
      * @param minPower min power of the generated loot
      * @param maxPower max power of the generated loot
      */
-    public void generateLoot(Backpack backpack, int minPower, int maxPower) {
+    public void generateLoot(Backpack backpack, String type, int minPower, int maxPower) {
         Random random = new Random();
-        int type = random.nextInt(2);
         String name;
         int power;
-        minPower = Math.max(minPower, 1); // avoid non-positive value;
-        if(maxPower < minPower) { // if max < min, set max to min + 5;
-            maxPower = minPower + 5;
-        }
 
-        if (type == 0) { // weapon
-            name = "Small Sword"; // might need to change the name later
-            power = random.nextInt(minPower, maxPower);
-            Weapon newItem = createWeapon(name, power);
-            backpack.addItem(newItem);
-        } else { // potion
-            name = "Small HP Potion"; // might need to change the name later
-            power = random.nextInt(minPower, maxPower);
-            Potion newItem = createPotion(name, power);
-            backpack.addItem(newItem);
+        switch (type) {
+            case "W" -> { // weapon
+                name = "Small Sword"; // might need to change the name later
+
+                power = random.nextInt(minPower, maxPower);
+                Weapon newItem = createWeapon(name, power);
+                backpack.addItem(newItem);
+            }
+            case "P" -> { // potion
+                name = "Small HP Potion"; // might need to change the name later
+
+                power = random.nextInt(minPower, maxPower);
+                Potion newItem = createPotion(name, power);
+                backpack.addItem(newItem);
+            }
+            case "K" -> { // key
+                name = "key";
+            }
         }
     }
 
-
-    /**
-     * create items to put the monster's backpack
-     *
-     * @param types  control what items to create
-     * @param amount control the number of created item
-     * @return
-     */
-    public Backpack createMonsterBackpack(List<String> types, Integer amount) {
-        // @TODO
-        return new PlayerBackpack();
-    }
 
 //    /**
 //     *

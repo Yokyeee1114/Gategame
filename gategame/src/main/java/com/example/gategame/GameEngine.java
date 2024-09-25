@@ -2,6 +2,7 @@ package com.example.gategame;
 
 import com.example.gategame.map.MapFactory;
 import com.example.gategame.settings.GameConfigLoader;
+import com.example.gategame.settings.LootConfig;
 import com.example.gategame.settings.MonstersConfig;
 import com.example.gategame.settings.SettingsConfig;
 
@@ -28,6 +29,10 @@ public class GameEngine {
 
     public MonstersConfig getMonsterConfig() {
         return settingsConfig.getMonstersConfig();
+    }
+
+    public LootConfig getLootConfig() {
+        return settingsConfig.getLootConfig();
     }
 
     public static Integer level;

@@ -11,6 +11,7 @@ public class SettingsConfig implements Serializable {
 
     private List<LevelConfig> levels;
     private MonstersConfig monstersConfig;
+    private LootConfig lootConfig;
 
 
     private InventoryConfig inventoryConfig;
@@ -36,5 +37,13 @@ public class SettingsConfig implements Serializable {
 
     public void setMonstersConfig(MonstersConfig monstersConfig) {
         this.monstersConfig = monstersConfig;
+    }
+
+    public LootConfig getLootConfig() {
+        return lootConfig;
+    }
+
+    public void setLootConfig(LootConfig lootConfig) {
+        this.lootConfig = lootConfig;
     }
 }
