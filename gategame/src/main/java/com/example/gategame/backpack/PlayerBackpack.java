@@ -13,20 +13,17 @@ import java.util.stream.Collectors;
  * @author Yeming Chen
  * backpack for player, and add/use item inside
  */
-public class PlayerBackpack implements Backpack {
-    //    Role role;
-    private List<Item> items;
+public class PlayerBackpack extends GeneralBackPack {
 
 
     public PlayerBackpack() {
-//        this.role = role;
-        this.items = new ArrayList<>();
+        super();
     }
 
     @Override
     public void addItem(Item item){
         if (item != null) {
-            items.add(item);
+            super.addItem(item);
             sortItems();
             System.out.println("item " + item.getName() + " added");
         }
@@ -36,7 +33,7 @@ public class PlayerBackpack implements Backpack {
      * sort items by potion -> weapon -> other
      */
     public void sortItems() {
-        items.sort(new Comparator<Item>() {
+        getItems().sort(new Comparator<Item>() {
             @Override
             public int compare(Item item1, Item item2) {
                 // compare type first
@@ -62,17 +59,6 @@ public class PlayerBackpack implements Backpack {
         });
     }
 
-    /**
-     * remove item using id in the backpack
-     * @param id the index of item in the backpack, not the global index
-     * @return true is success, false otherwise.
-     */
-    @Override
-    public boolean removeItem(int id) {
-        if(id >= items.size()) return false;
-        items.remove(id);
-        return true;
-    }
 
     /**
      * get and remove item in the backpack
@@ -80,12 +66,12 @@ public class PlayerBackpack implements Backpack {
      * @return The item of given index, null if item not found.
      */
     public Item getItem(int id) {
-        if(id >= items.size()) {
+        if(id >= getItems().size()) {
             System.out.println("item " + id + " not found");
             return null;
         }
-        Item item = items.get(id);
-        items.remove(item);
+        Item item = getItems().get(id);
+        getItems().remove(item);
         System.out.println("item " + item.getName() + " removed");
         return item;
     }
@@ -95,7 +81,7 @@ public class PlayerBackpack implements Backpack {
      * @return a list of all potion in the backpack
      */
     public List<Potion> getPotions() {
-        return items.stream()
+        return getItems().stream()
                 .filter(item -> item instanceof Potion)
                 .map(item -> (Potion) item)
                 .collect(Collectors.toList());
@@ -109,7 +95,7 @@ public class PlayerBackpack implements Backpack {
      * @return the item list
      */
     public <T extends Item> List<T> getItems(Class<T> tClass) {
-        return items.stream().filter(tClass::isInstance).map(tClass::cast).toList();
+        return getItems().stream().filter(tClass::isInstance).map(tClass::cast).toList();
     }
 
     /**
@@ -119,7 +105,7 @@ public class PlayerBackpack implements Backpack {
      * @param role to be affected
      */
     public void useItem(Item item, Role role) {
-        items.remove(item);
+        getItems().remove(item);
         item.use(role);
     }
 
@@ -128,7 +114,7 @@ public class PlayerBackpack implements Backpack {
      * @return a list of all weapons in the backpack
      */
     public List<Weapon> getWeapons() {
-        return items.stream()
+        return getItems().stream()
                 .filter(item -> item instanceof Weapon)
                 .map(item -> (Weapon) item)
                 .collect(Collectors.toList());
@@ -137,15 +123,15 @@ public class PlayerBackpack implements Backpack {
     @Override
     public void displayItem() {
         System.out.println("playerBackpack{");
-        for (int i = 0; i < items.size(); i++) {
-            System.out.println("id " + i + ": " + items.get(i));
+        for (int i = 0; i < getItems().size(); i++) {
+            System.out.println("id " + i + ": " + getItems().get(i));
         }
         System.out.println("}");
     }
 
     @Override
     public boolean containsItem(Item item) {
-        return items.contains(item);
+        return getItems().contains(item);
     }
 
 }

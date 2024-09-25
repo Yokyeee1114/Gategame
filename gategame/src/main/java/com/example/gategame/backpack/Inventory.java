@@ -120,13 +120,13 @@ public class Inventory {
     /**
      * Player get all loot from monster backpack.
      * @param playerBackpack the backpack of player
-     * @param monsterBackpack the backpack of beaten monster
+     * @param backpack the backpack of beaten monster
      */
-    public void getLootFromBackpack(PlayerBackpack playerBackpack, MonsterBackpack monsterBackpack) {
-        for (Item item : monsterBackpack.getItems()) {
+    public void getLootFromBackpack(PlayerBackpack playerBackpack, Backpack backpack) {
+        for (Item item : backpack.getItems()) {
             playerBackpack.addItem(item);
         }
-        monsterBackpack.clearBackpack();
+        backpack.clearBackpack();
     }
 
 
