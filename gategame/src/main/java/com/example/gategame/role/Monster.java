@@ -8,7 +8,7 @@ import com.example.gategame.map.MapItem;
 /**
  * @author Hao Ye(u7981083)
  */
-public abstract class Monster extends Role implements MapItem {
+public class Monster extends Role implements MapItem {
 
     private Backpack backpack;
 
@@ -19,6 +19,11 @@ public abstract class Monster extends Role implements MapItem {
     @Override
     public String toString() {
         return String.format("%s: power(%s), health(%s)", getName(), getPower(), getHealth());
+    }
+
+    @Override
+    public Character getSymbol() {
+        return null;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.example.gategame.settings;
 
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -13,6 +14,8 @@ public class SettingsConfig implements Serializable {
     private LootConfig lootConfig;
 
 
+    private InventoryConfig inventoryConfig;
+
     public List<LevelConfig> getLevels() {
         return levels;
     }
@@ -21,6 +24,13 @@ public class SettingsConfig implements Serializable {
         this.levels = levels;
     }
 
+    public InventoryConfig getInventoryConfig() {
+        return inventoryConfig;
+    }
+
+    public void setInventoryConfig(InventoryConfig inventoryConfig) {
+        this.inventoryConfig = inventoryConfig;
+    }
     public MonstersConfig getMonstersConfig() {
         return monstersConfig;
     }

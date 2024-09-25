@@ -1,6 +1,9 @@
 package com.example.gategame.map;
 
+import com.example.gategame.control.Location;
+
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class GameMap {
@@ -40,6 +43,56 @@ public class GameMap {
         mapObjects.add(obj);
     }
 
+    public void removeMapObject(MapObject obj) {
+        mapObjects.remove(obj);
+    }
+
+    public List<MapObject> getMapObjects() {
+        return mapObjects;
+    }
+
+    public void setMapObjects(List<MapObject> mapObjects) {
+        this.mapObjects = mapObjects;
+    }
+
+    public List<Location> getEmptyLocation(){
+        List<Location> locations = new ArrayList<>();
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j <cols ; j++) {
+                if(grid[i][j]=='.'){
+                    locations.add(new Location(i,j));
+                }
+            }
+        }
+        locations.remove(new Location(1,1));
+        return locations;
+    }
+
+    public void displayMap(Location location) {
+        int playerRow = location.getRow();
+        int playerCol = location.getCol();
+        char[][] displayGrid = new char[rows][cols];
+        for (int i = 0; i < rows; i++) {
+            displayGrid[i] = grid[i].clone();
+        }
+
+        // add the map Object
+        for (MapObject obj : mapObjects) {
+            displayGrid[obj.getRow()][obj.getCol()] = obj.getSymbol();
+        }
+
+        // add the player
+        displayGrid[playerRow][playerCol] = 'P';
+
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                System.out.print(displayGrid[i][j]);
+            }
+            System.out.println();
+        }
+    }
+
     /**
      *
      * @param playerRow
@@ -77,6 +130,13 @@ public class GameMap {
     public boolean isValidMove(int row, int col) {
         return row >= 0 && row < rows && col >= 0 && col < cols && (grid[row][col] == '.' || grid[row][col] == 'D');
     }
+    public boolean isValidMove(Location location) {
+        int row = location.getRow();
+        int col = location.getCol();
+        return row >= 0 && row < rows && col >= 0 && col < cols && (grid[row][col] == '.' || grid[row][col] == 'D');
+    }
+
+
 
     /**
      *

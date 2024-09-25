@@ -70,21 +70,19 @@ public class PlayerBackpack implements Backpack {
     }
 
     /**
-     * use item in the backpack
-     * @param id the index of item
-     * @return true if successful; false otherwise.
+     * get and remove item in the backpack
+     * @param id the index of item in backpack, not the global index
+     * @return The item of given index, null if item not found.
      */
-    public boolean useItem(int id) {
-        for(Item item : items){
-            if (item.getId() == id){
-                items.remove(item);
-                System.out.println("item " + item.getName() + " removed");
-//                item.use(role);
-                return true;
-            }
+    public Item getItem(int id) {
+        if(id >= items.size()) {
+            System.out.println("item " + id + " not found");
+            return null;
         }
-        System.out.println("item " + id + " not found");
-        return false;
+        Item item = items.get(id);
+        items.remove(item);
+        System.out.println("item " + item.getName() + " removed");
+        return item;
     }
 
     /**
@@ -133,10 +131,11 @@ public class PlayerBackpack implements Backpack {
 
     @Override
     public void displayItem() {
-        System.out.println("playerBackpack{" +
-//                "character=" + role.getName() +
-                ", items=" + items +
-                '}');
+        System.out.println("playerBackpack{");
+        for (int i = 0; i < items.size(); i++) {
+            System.out.println("id " + i + ": " + items.get(i));
+        }
+        System.out.println("}");
     }
 
     @Override
