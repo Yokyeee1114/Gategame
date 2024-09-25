@@ -57,6 +57,23 @@ public class Inventory {
     public PlayerBackpack createBackpack() {
         return new PlayerBackpack();
     }
+    /**
+     * create items to put the monster's backpack
+     *
+     * @param types  control what items to create
+     * @param amount control the number of created item
+     * @return a backpack with loot added
+     */
+    public Backpack createMonsterBackpack(List<String> types, Integer amount) {
+        LootConfig lootConfig = GameEngine.getInstance().getLootConfig();
+        int minPower = lootConfig.getMinPower();
+        int maxPower = lootConfig.getMaxPower();
+        MonsterBackpack backpack = new MonsterBackpack();
+        for (String type : types) {
+            generateLoot(backpack, type, minPower, maxPower);
+        }
+        return backpack;
+    }
 
     public void addItemToBackpack(Backpack backpack, int id) {
             Item item = allItems.get(id);
