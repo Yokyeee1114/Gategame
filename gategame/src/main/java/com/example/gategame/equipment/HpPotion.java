@@ -1,6 +1,5 @@
 package com.example.gategame.equipment;
 
-import com.example.gategame.control.Location;
 import com.example.gategame.role.Role;
 import com.example.gategame.utils.PrintUtils;
 
@@ -24,10 +23,7 @@ public class HpPotion extends GeneralItem implements Potion{
 
     @Override
     public String toString() {
-        return "HpPotion{" +
-                "name='" + super.getName() + '\'' +
-                ", power=" + super.getPower() +
-                ", id=" + super.getId() +
-                '}';
+        return super.getName() +
+                ", power=" + super.getPower();
     }
 }

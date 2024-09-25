@@ -1,6 +1,5 @@
 package com.example.gategame.equipment;
 
-import com.example.gategame.control.Location;
 import com.example.gategame.role.Role;
 /**
  * @author Yeming Chen
@@ -28,10 +27,7 @@ public class NormalWeapon extends GeneralItem implements Weapon{
 
     @Override
     public String toString() {
-        return "NormalWeapon{" +
-                "name='" + super.getName() + '\'' +
-                ", power=" + super.getPower() +
-                ", id=" + super.getId() +
-                '}';
+        return super.getName() +
+                ", power=" + super.getPower();
     }
 }
