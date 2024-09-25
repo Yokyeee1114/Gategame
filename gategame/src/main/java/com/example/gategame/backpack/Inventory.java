@@ -1,8 +1,10 @@
 package com.example.gategame.backpack;
 
 import com.example.gategame.GameEngine;
-import com.example.gategame.equipment.*;
-import com.example.gategame.settings.GameConfigLoader;
+import com.example.gategame.equipment.HpPotion;
+import com.example.gategame.equipment.NormalWeapon;
+import com.example.gategame.equipment.Potion;
+import com.example.gategame.equipment.Weapon;
 import com.example.gategame.settings.LootConfig;
 
 import java.util.ArrayList;
@@ -46,10 +48,10 @@ public class Inventory {
         return newItem;
     }
 
-    public Potion createPotion(String name, int power) {
+    public HpPotion createPotion(String name, int power) {
         // create and add to the inventory
         int id = nextId++;
-        Potion newItem = new HpPotion(id, name, power);
+        HpPotion newItem = new HpPotion(id, name, power);
         allItems.add(newItem);
         return newItem;
     }

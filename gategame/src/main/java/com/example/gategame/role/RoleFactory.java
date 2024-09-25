@@ -5,12 +5,13 @@ import com.example.gategame.backpack.Backpack;
 import com.example.gategame.backpack.Inventory;
 import com.example.gategame.settings.MonsterConfig;
 import com.example.gategame.settings.MonstersConfig;
+import com.example.gategame.settings.PlayerConfig;
 
 /**
  * @author Hao Ye(u7981083)
  * Used to create monsters
  */
-public class MonsterFactory {
+public class RoleFactory {
 
     private static MonstersConfig monstersConfig;
 
@@ -45,8 +46,13 @@ public class MonsterFactory {
         return monster;
     }
 
-    public static void main(String[] args) {
-        Monster a = createMonster(MonsterType.ELITE);
+    private static PlayerConfig playerConfig;
+
+    public static Player createPlayer() {
+        if (playerConfig == null) {
+            playerConfig = GameEngine.getInstance().getSettingsConfig().getPlayerConfig();
+        }
+        return new Player(playerConfig.getName(), "", playerConfig.getPower(), playerConfig.getHealth());
     }
 
 }

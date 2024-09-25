@@ -40,7 +40,12 @@
       "power": "10"
     }
   ],
-  "monsters": {
+  "playerConfig": {
+    "name": "Player",
+    "power": 20,
+    "health": 100
+  },
+  "monstersConfig": {
     "minor": {
       "type": "Minor",
       "lootItems": [

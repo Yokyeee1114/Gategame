@@ -2,9 +2,9 @@ package com.example.gategame.backpack;
 
 import com.example.gategame.equipment.Potion;
 import com.example.gategame.equipment.Weapon;
+import com.example.gategame.role.Role;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -94,6 +94,28 @@ public class PlayerBackpack implements Backpack {
                 .filter(item -> item instanceof Potion)
                 .map(item -> (Potion) item)
                 .collect(Collectors.toList());
+    }
+
+    /**
+     * Filter items by generic class type
+     *
+     * @param tClass the item type to retrieve
+     * @param <T>    the class for specific item
+     * @return the item list
+     */
+    public <T extends Item> List<T> getItems(Class<T> tClass) {
+        return items.stream().filter(tClass::isInstance).map(tClass::cast).toList();
+    }
+
+    /**
+     * Remove the item from backpack before using it.
+     *
+     * @param item to be used
+     * @param role to be affected
+     */
+    public void useItem(Item item, Role role) {
+        removeItem(item.getId());
+        item.use(role);
     }
 
     /**

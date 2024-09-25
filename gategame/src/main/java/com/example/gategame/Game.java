@@ -1,13 +1,19 @@
 package com.example.gategame;
 
-import com.example.gategame.backpack.Backpack;
 import com.example.gategame.backpack.Inventory;
-import com.example.gategame.backpack.PlayerBackpack;
 import com.example.gategame.control.Location;
-import com.example.gategame.map.*;
-import com.example.gategame.role.*;
+import com.example.gategame.map.Enemy;
+import com.example.gategame.map.GameMap;
+import com.example.gategame.map.MapItem;
+import com.example.gategame.map.MapObject;
+import com.example.gategame.role.Monster;
+import com.example.gategame.role.MonsterType;
+import com.example.gategame.role.Player;
+import com.example.gategame.role.RoleFactory;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 // sample game class for testing purpose, might need to modify later
 public class Game {
@@ -45,17 +51,18 @@ public class Game {
 //            Location location = empty.get(index);
 //            empty.remove(location);
             Location location = new Location(3,1);
-            MinorMonster monster = new MinorMonster(20,50,null);
+//            Monster monster = RoleFactory.createMonster(MonsterType.MINOR);
+        MapItem potion = Inventory.getInventory().createPotion("Small Potion", 10);
             Enemy enemy1 = new Enemy(location);
-            enemy1.setMonster(monster);
-            objects.put(location, (MapObject) enemy1);
+        enemy1.setMapItem(potion);
+        objects.put(location, enemy1);
 
         Location location2 = new Location(1,3);
-        MinorMonster monster2 = new MinorMonster(20,50,null);
+        Monster monster2 = RoleFactory.createMonster(MonsterType.ELITE);
         Enemy enemy2 = new Enemy(location2);
-        enemy2.setMonster(monster2);
+        enemy2.setMapItem(monster2);
 
-        objects.put(location2, (MapObject)enemy2);
+        objects.put(location2, enemy2);
 
         mapObjects.add(objects);
     }
@@ -93,7 +100,7 @@ public class Game {
     public void initGame(){
         playerLocation = new Location(1,1);
         stage = 1;
-        player = new Player("","",10,100);
+        player = RoleFactory.createPlayer();
         GameMap map1 = new GameMap(new String[]{
                 "########D########",
                 "#..............##",

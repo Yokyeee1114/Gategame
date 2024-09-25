@@ -38,9 +38,16 @@ public class GameEngine {
     public static Integer level;
 
     public static void main(String[] args) {
-        GameEngine.getInstance().settingsConfig = GameConfigLoader.loadConfig();
+        GameEngine.getInstance().loadEngine();
         // start play
         setLevel(1);
+    }
+
+    /**
+     * read engine configure file
+     */
+    public void loadEngine() {
+        settingsConfig = GameConfigLoader.loadConfig();
     }
 
     public static void setLevel(Integer level) {

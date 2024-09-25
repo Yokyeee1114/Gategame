@@ -3,7 +3,6 @@ package com.example.gategame.map;
 import com.example.gategame.control.Location;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 public class GameMap {
@@ -46,10 +45,6 @@ public class GameMap {
     public void addMapObject(MapObject obj) {
         mapObjects.add(obj);
     }
-    public void removeMapObject(MapObject obj) {
-        mapObjects.remove(obj);
-    }
-
     public void removeMapObject(MapObject obj) {
         mapObjects.remove(obj);
     }
