@@ -1,10 +1,7 @@
 package com.example.gategame;
 
 import com.example.gategame.map.MapFactory;
-import com.example.gategame.settings.GameConfigLoader;
-import com.example.gategame.settings.LootConfig;
-import com.example.gategame.settings.MonstersConfig;
-import com.example.gategame.settings.SettingsConfig;
+import com.example.gategame.settings.*;
 
 /**
  * @author Hao Ye(u7981083)
@@ -33,6 +30,10 @@ public class GameEngine {
 
     public LootConfig getLootConfig() {
         return settingsConfig.getLootConfig();
+    }
+
+    public LootRules getLootRules() {
+        return settingsConfig.getLootRules();
     }
 
     public static Integer level;

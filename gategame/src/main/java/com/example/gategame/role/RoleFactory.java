@@ -34,17 +34,17 @@ public class RoleFactory {
         switch (type) {
             case MINOR -> {
                 MonsterConfig monsterConfig = monstersConfig.getMinor();
-                Backpack backpack = Inventory.getInventory().createMonsterBackpack(monsterConfig.getLootItems(), monsterConfig.getLootAmount());
+                Backpack backpack = Inventory.getInventory().createMonsterBackpack("minion", monsterConfig.getLootItems(), monsterConfig.getLootAmount());
                 monster = new MinorMonster(monsterConfig.getPower(), monsterConfig.getHealth(), backpack);
             }
             case ELITE -> {
                 MonsterConfig monsterConfig = monstersConfig.getElite();
-                Backpack backpack = Inventory.getInventory().createMonsterBackpack(monsterConfig.getLootItems(), monsterConfig.getLootAmount());
+                Backpack backpack = Inventory.getInventory().createMonsterBackpack("elite", monsterConfig.getLootItems(), monsterConfig.getLootAmount());
                 monster = new EliteMonster(monsterConfig.getPower(), monsterConfig.getHealth(), backpack);
             }
             case BOSS -> {
                 MonsterConfig monsterConfig = monstersConfig.getBoss();
-                Backpack backpack = Inventory.getInventory().createMonsterBackpack(monsterConfig.getLootItems(), monsterConfig.getLootAmount());
+                Backpack backpack = Inventory.getInventory().createMonsterBackpack("boss", monsterConfig.getLootItems(), monsterConfig.getLootAmount());
                 monster = new BossMonster(monsterConfig.getPower(), monsterConfig.getHealth(), backpack);
             }
         }

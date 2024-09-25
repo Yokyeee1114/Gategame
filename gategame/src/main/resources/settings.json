@@ -29,9 +29,22 @@
       ]
     }
   ],
-  "lootConfig": {
-    "minPower": 5,
-    "maxPower": 20
+  "lootRules": {
+    "minion": {
+      "minPower": 5,
+      "maxPower": 15,
+      "potionRate": 2
+    },
+    "elite": {
+      "minPower": 15,
+      "maxPower": 25,
+      "potionRate": 2
+    },
+    "boss": {
+      "minPower": 20,
+      "maxPower": 30,
+      "potionRate": 2
+    }
   },
   "items": [
     {
