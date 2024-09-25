@@ -37,6 +37,7 @@ public class GeneralItem implements Item {
         return id;
     }
 
+    @Override
     public int getPower() {
         return power;
     }

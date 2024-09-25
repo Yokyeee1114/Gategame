@@ -29,6 +29,10 @@ public class MonsterBackpack implements Backpack{
                 '}');
     }
 
+    public List<Item> getItems() {
+        return items;
+    }
+
     @Override
     public boolean containsItem(Item item) {
         return items.contains(item);

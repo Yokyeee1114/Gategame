@@ -11,4 +11,5 @@ public interface Item {
     String getName();
     void use(Role role);
     int getId();
+    int getPower();
 }
