@@ -1,6 +1,5 @@
 package com.example.gategame.equipment;
 
-import com.example.gategame.control.Location;
 import com.example.gategame.role.Role;
 import com.example.gategame.utils.PrintUtils;
 
@@ -15,12 +14,27 @@ public class HpPotion extends GeneralItem implements Potion{
     }
 
 
+    /**
+     * Use potion on the target
+     *
+     * @param role the target
+     */
     @Override
     public void use(Role role) {
         Integer oldHealth = role.getHealth();
-        role.restoreHealth(super.getPower());
+        role.restoreHealth(getHpPotionEffect(role));
         PrintUtils.print("%s used %s, restored %s HP".formatted(role.getName(),super.getName(), role.getHealth() - oldHealth));
     }
+
+    /**
+     * Calculate the effect of HpPotion
+     *
+     * @return how much health can be restored
+     */
+    public int getHpPotionEffect(Role role) {
+        return getPower() * role.getMaxHealth() / 100;
+    }
+
 
     @Override
     public String toString() {

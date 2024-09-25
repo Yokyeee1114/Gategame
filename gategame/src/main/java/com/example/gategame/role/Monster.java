@@ -2,6 +2,7 @@ package com.example.gategame.role;
 
 
 import com.example.gategame.backpack.Backpack;
+import com.example.gategame.battle.BattleField;
 import com.example.gategame.map.MapItem;
 
 /**
@@ -23,5 +24,6 @@ public abstract class Monster extends Role implements MapItem {
     @Override
     public void interact(Player player) {
         System.out.printf("%s fighting with %s%n", player.getName(), getName());
+        BattleField.battle(player, this);
     }
 }
