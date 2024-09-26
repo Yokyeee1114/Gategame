@@ -1,5 +1,7 @@
 package com.example.gategame.backpack;
 
+import com.example.gategame.items.Item;
+
 /**
  * @author Yeming Chen
  * Backpack is used to store/use item

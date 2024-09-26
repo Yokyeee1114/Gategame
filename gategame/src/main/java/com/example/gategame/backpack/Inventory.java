@@ -1,10 +1,11 @@
 package com.example.gategame.backpack;
 
 import com.example.gategame.GameEngine;
-import com.example.gategame.equipment.HpPotion;
-import com.example.gategame.equipment.NormalWeapon;
-import com.example.gategame.equipment.Potion;
-import com.example.gategame.equipment.Weapon;
+import com.example.gategame.items.general.potion.HpPotion;
+import com.example.gategame.items.general.weapon.NormalWeapon;
+import com.example.gategame.items.general.potion.Potion;
+import com.example.gategame.items.general.weapon.Weapon;
+import com.example.gategame.items.Item;
 import com.example.gategame.settings.LootConfig;
 
 import java.util.ArrayList;

@@ -1,7 +1,5 @@
-package com.example.gategame.equipment;
+package com.example.gategame.items.general;
 
-import com.example.gategame.backpack.Item;
-import com.example.gategame.control.Location;
 import com.example.gategame.role.Role;
 
 /**
@@ -10,7 +8,7 @@ import com.example.gategame.role.Role;
  * Have power, name, id, and location.
  * location can be null if it is not displayed in the map.
  */
-public class GeneralItem implements Item {
+public class GeneralItem implements UsableItem {
     private String name;
     private int power;
     private int id;
@@ -27,7 +25,6 @@ public class GeneralItem implements Item {
         return name;
     }
 
-    @Override
     public void use(Role role) {
 
     }
@@ -37,7 +34,8 @@ public class GeneralItem implements Item {
         return id;
     }
 
-    @Override
+
+
     public int getPower() {
         return power;
     }
