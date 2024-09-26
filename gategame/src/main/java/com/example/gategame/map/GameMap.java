@@ -140,7 +140,7 @@ public class GameMap {
     public boolean isValidMove(Location location) {
         int row = location.getRow();
         int col = location.getCol();
-        return row >= 0 && row < rows && col >= 0 && col < cols && (grid[row][col] == '.' || grid[row][col] == 'D');
+        return row >= 0 && row < rows && col >= 0 && col < cols && grid[row][col] != '#';
     }
 
 
