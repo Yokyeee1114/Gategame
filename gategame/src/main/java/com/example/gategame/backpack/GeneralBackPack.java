@@ -19,11 +19,21 @@ public class GeneralBackPack implements Backpack{
         }
     }
 
+    /**
+     * remove item based on item id
+     *
+     * @param id the id of item
+     * @return true if success, false otherwise
+     */
     @Override
     public boolean removeItem(int id) {
-        if(id >= items.size()) return false;
-        items.remove(id);
-        return true;
+        for (Item item : items) {
+            if (item.getId() == id) {
+                items.remove(item);
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
