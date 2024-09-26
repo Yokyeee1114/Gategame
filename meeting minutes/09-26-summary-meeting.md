@@ -1,4 +1,4 @@
-# Meeting Date: 09-07
+# Meeting Date: 09-26
 
 ## Attendees
 
@@ -8,36 +8,30 @@
 
 ## Agreed Procedure
 
-Stand up Procedure: Yuheng, as the lead, first introduce the agenda included in the meeting
+Stand up Procedure: Yuheng, as the lead, introduce the agenda of the last meeting.
 
 ## Agenda Items
 
 | Number |                                            Item |
 |:-------|------------------------------------------------:|
-| 1      |                    Discussing the user story |
-| 2      |                    Discussing the necessary features |
-| 3      | Confirming the Game engine|
-| 4      |                  Assigning tasks for this round |
-| 5 |   Confirming lead and time for the next meeting |
+| 1      |                    Discussing the reflection of the project |
+| 2      |                    Review the whole process of the project |
+| 3      | Confirming and assigning the deadline of the rest task|
 
-## Key Discussion Points
-
-- The key functions to be implemented are determined to be picking up items, moving, increasing attributes, teleporting maps, attacking, resurrection, etc.
-- The game skeleton is divided into four parts: inventory, map, movement and character.
 
 ## Action Items
 
 | Task                               | Assigned To | Due Date |
 |:-----------------------------------|:-----------:|:--------:|
-| Initialise Repo                        |   Hao Ye    |  Sep 8   |
-| Movement skeleton        |  Zining He  |  Sep    11|
-| Map skeleton           |  Yuheng Li  |  Sep 11   |
-| Character skeleton     |   Hao Ye    |  Sep 11   |
-| Inventory system skeleton | Yeming Chen |  Sep 11   |
-
+| Add the description of the game engine|   Hao Ye and Yeming Chen|  Sep 28   |
+| Command tester        |  Zining He  |  Sep 28|
+| Fix the rest bugs in the game  |  Zining He  |  Sep 28|
+| Command tester        |  Zining He  |  Sep 28|
+| Add the discripton of the additional feature|  ALL  |  Sep 28   |
+| Sort out the schedule and user story in Wiki  |   Yuheng Li    |  Sep 28   |
+| Generate the docker file | Yuheng Li |  Sep 28   |
+| Project License | Yuheng Li |  Sep 28   |
 ## Scribe Rotation
 
-**Lead/Scrib:** Yeming Chen
-<br>
-**Next Meeting Date:** Sep 11
+This is our final meeting.
 
