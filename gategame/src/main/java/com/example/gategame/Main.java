@@ -3,8 +3,9 @@ package com.example.gategame;
 
 import com.example.gategame.control.Control;
 import com.example.gategame.control.Location;
-import com.example.gategame.map.Enemy;
+import com.example.gategame.items.gate.Enemy;
 import com.example.gategame.map.GameMap;
+import com.example.gategame.map.MapItem;
 import com.example.gategame.map.MapObject;
 import com.example.gategame.role.Player;
 
@@ -37,13 +38,13 @@ import java.util.regex.Pattern;
         public static Game gameLoop(Game game) {
             Player player = game.getPlayer();
             List<GameMap> gameMaps = game.getGameMaps();
-            List<HashMap<Location, MapObject>> mapObjects = game.getMapObjects();
+            List<HashMap<Location, MapItem>> mapItems = game.getMapObjects();
             int stage = game.getStage();
             Location location = game.getPlayerLocation();
 
-            HashMap<Location,MapObject> mapObject = game.getMapObjects().get(stage-1);
+            HashMap<Location,MapItem> mapObject = mapItems.get(stage-1);
             GameMap gameMap = gameMaps.get(stage-1);
-            gameMap.setMapObjects(extractMapObjects(mapObjects).get(stage-1));
+            gameMap.setItems(mapObject);
 
             Scanner scan = new Scanner(System.in);
             String input = scan.nextLine().toUpperCase();
@@ -82,26 +83,24 @@ import java.util.regex.Pattern;
                     System.out.println(player.toString());
                 }
             }
-            mapObjects.set(stage-1,mapObject);
-            return new Game(player,gameMaps,mapObjects,stage,location);
+            mapItems.set(stage-1,mapObject);
+            return new Game(player,gameMaps,mapItems,stage,location);
 
         }
 
-        public static List<Location> getEventLocation(HashMap<Location,MapObject> mapObject){
-            return new ArrayList<>(mapObject.keySet());
-        }
 
-        public static boolean isEvent(Location location, HashMap<Location, MapObject> mapObject){
-            List<Location> locations = getEventLocation(mapObject);
+
+        public static boolean isEvent(Location location, HashMap<Location, MapItem> mapObject){
+            List<Location> locations = new ArrayList<>(mapObject.keySet());
             return locations.contains(location);
         }
 
 
-        public static HashMap<Location,MapObject> eventTrigger(Location location, HashMap<Location,MapObject> mapObject, Player player){
-            List<Location> locations = getEventLocation(mapObject);
+        public static HashMap<Location,MapItem> eventTrigger(Location location, HashMap<Location,MapItem> mapObject, Player player){
+            List<Location> locations = new ArrayList<>(mapObject.keySet());
             if(locations.contains(location)){
                 if(mapObject.get(location) instanceof Enemy){
-                    ((Enemy) mapObject.get(location)).getMapItem().interact(player);
+                    mapObject.get(location).interact(player);
                 }
                 mapObject.remove(location);
             }

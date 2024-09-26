@@ -23,7 +23,7 @@ public class GameDemo {
 //        }else {
 //            System.out.println("Invalid!");
 //        }
-        GameSystem gameSystem = new GameSystem();
-        gameSystem.play();
+//        GameSystem gameSystem = new GameSystem();
+//        gameSystem.play();
     }
 }

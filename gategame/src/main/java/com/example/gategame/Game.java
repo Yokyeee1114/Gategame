@@ -4,7 +4,7 @@ import com.example.gategame.backpack.Inventory;
 import com.example.gategame.control.Location;
 import com.example.gategame.items.gate.Gate;
 import com.example.gategame.items.gate.GateKey;
-import com.example.gategame.map.Enemy;
+import com.example.gategame.items.gate.Enemy;
 import com.example.gategame.map.GameMap;
 import com.example.gategame.map.MapItem;
 import com.example.gategame.map.MapObject;
@@ -22,7 +22,7 @@ import java.util.List;
 public class Game {
     private Player player;
     private List<GameMap> gameMaps;
-    private List<HashMap<Location,MapObject>> mapObjects;
+    private final List<HashMap<Location,MapItem>> mapObjects;
 
     private int stage;
 
@@ -32,7 +32,7 @@ public class Game {
 
     private  Location playerLocation;
 
-    public Game(Player player, List<GameMap> gameMaps, List<HashMap<Location, MapObject>> mapObjects, int stage, Location playerLocation) {
+    public Game(Player player, List<GameMap> gameMaps, List<HashMap<Location, MapItem>> mapObjects, int stage, Location playerLocation) {
         this.player = player;
         this.gameMaps = gameMaps;
         this.mapObjects = mapObjects;
@@ -47,7 +47,7 @@ public class Game {
 
     public void initMapObjects(){
             List<Location> empty = gameMaps.get(0).getEmptyLocation();
-            HashMap<Location,MapObject> objects = new HashMap<>();
+            HashMap<Location,MapItem> objects = new HashMap<>();
 //            Random random = new Random();
 //
 //            int index = random.nextInt(empty.size());
@@ -56,25 +56,22 @@ public class Game {
             Location location = new Location(3,1);
 //            Monster monster = RoleFactory.createMonster(MonsterType.MINOR);
         MapItem potion = Inventory.getInventory().createPotion("Small Potion", 10);
-            Enemy enemy1 = new Enemy(location);
-        enemy1.setMapItem(potion);
-        objects.put(location, enemy1);
+
 
         Location location2 = new Location(1,3);
         Monster monster2 = RoleFactory.createMonster(MonsterType.ELITE);
-        Enemy enemy2 = new Enemy(location2);
-        enemy2.setMapItem(monster2);
+        Enemy enemy2 = new Enemy(monster2);
 
         objects.put(location2, enemy2);
 
         mapObjects.add(objects);
     }
 
-    public  List<List<MapObject>> extractMapObjects() {
-        List<List<MapObject>> objectList = new ArrayList<>();
+    public  List<List<MapItem>> extractMapObjects() {
+        List<List<MapItem>> objectList = new ArrayList<>();
 
-        for (HashMap<Location, MapObject> map : mapObjects) {
-            List<MapObject> row = new ArrayList<>(map.values());
+        for (HashMap<Location, MapItem> map : mapObjects) {
+            List<MapItem> row = new ArrayList<>(map.values());
             objectList.add(row);
         }
         return objectList;
@@ -88,9 +85,9 @@ public class Game {
         this.gameMaps = gameMaps;
     }
 
-    public void setMapObjects(HashMap<Location, MapObject> mapObjects, int stage) {
-        this.mapObjects.set(stage-1,mapObjects);
-    }
+//    public void setMapObjects(HashMap<Location, MapObject> mapObjects, int stage) {
+//        this.mapObjects.set(stage-1,mapObjects);
+//    }
 
     public void setStage(int stage) {
         this.stage = stage;
@@ -119,7 +116,8 @@ public class Game {
 
         gameMaps.add(map1);
         initMapObjects();
-        gameMaps.get(0).setMapObjects(extractMapObjects().get(0));
+        gameMaps.get(0).setItems(mapObjects.get(0));
+//        gameMaps.get(0).setMapObjects(extractMapObjects().get(0));
         gameMaps.get(0).displayMap(1,1);
 
     }
@@ -160,7 +158,7 @@ public class Game {
         return gameMaps;
     }
 
-    public List<HashMap<Location, MapObject>> getMapObjects() {
+    public List<HashMap<Location, MapItem>> getMapObjects() {
         return mapObjects;
     }
 

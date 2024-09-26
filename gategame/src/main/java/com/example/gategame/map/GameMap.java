@@ -3,6 +3,7 @@ package com.example.gategame.map;
 import com.example.gategame.control.Location;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class GameMap {
@@ -11,7 +12,7 @@ public class GameMap {
     private int cols;
     private int doorRow;
     private int doorCol;
-    private List<MapObject> mapObjects;
+//    private List<MapObject> mapObjects;
 
     private List<MapItem> mapItems;
 
@@ -19,8 +20,12 @@ public class GameMap {
     public GameMap(List<MapItem> mapItems) {
         this.mapItems = mapItems;
     }
-
-    ;
+    public void setItems(HashMap<Location,MapItem> mapItems){
+        List<Location> locations = new ArrayList<>(mapItems.keySet());
+        for (Location location :locations) {
+            grid[location.getRow()][location.getCol()] = mapItems.get(location).getSymbol();
+        }
+    }
 
     /**
      * @ author Yuheng Li
@@ -30,7 +35,7 @@ public class GameMap {
         this.rows = mapData.length;
         this.cols = mapData[0].length();
         this.grid = new char[rows][cols];
-        this.mapObjects = new ArrayList<>();
+//        this.mapObjects = new ArrayList<>();
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
@@ -42,20 +47,20 @@ public class GameMap {
             }
         }
     }
-    public void addMapObject(MapObject obj) {
-        mapObjects.add(obj);
-    }
-    public void removeMapObject(MapObject obj) {
-        mapObjects.remove(obj);
-    }
-
-    public List<MapObject> getMapObjects() {
-        return mapObjects;
-    }
-
-    public void setMapObjects(List<MapObject> mapObjects) {
-        this.mapObjects = mapObjects;
-    }
+//    public void addMapObject(MapObject obj) {
+//        mapObjects.add(obj);
+//    }
+//    public void removeMapObject(MapObject obj) {
+//        mapObjects.remove(obj);
+//    }
+//
+//    public List<MapObject> getMapObjects() {
+//        return mapObjects;
+//    }
+//
+//    public void setMapObjects(List<MapObject> mapObjects) {
+//        this.mapObjects = mapObjects;
+//    }
 
     public List<Location> getEmptyLocation(){
         List<Location> locations = new ArrayList<>();
@@ -79,9 +84,9 @@ public class GameMap {
         }
 
         // add the map Object
-        for (MapObject obj : mapObjects) {
-            displayGrid[obj.getRow()][obj.getCol()] = obj.getSymbol();
-        }
+//        for (MapObject obj : mapObjects) {
+//            displayGrid[obj.getRow()][obj.getCol()] = obj.getSymbol();
+//        }
 
         // add the player
         displayGrid[playerRow][playerCol] = 'P';
@@ -106,10 +111,10 @@ public class GameMap {
             displayGrid[i] = grid[i].clone();
         }
 
-        // add the map Object
-        for (MapObject obj : mapObjects) {
-            displayGrid[obj.getRow()][obj.getCol()] = obj.getSymbol();
-        }
+//        // add the map Object
+//        for (MapObject obj : mapObjects) {
+//            displayGrid[obj.getRow()][obj.getCol()] = obj.getSymbol();
+//        }
 
         // add the player
         displayGrid[playerRow][playerCol] = 'P';
@@ -150,20 +155,20 @@ public class GameMap {
         return row == doorRow && col == doorCol;
     }
 
-    /**
-     * @author Yuheng Li
-     * @param row
-     * @param col
-     * @return
-     */
-    public MapObject getObjectAt(int row, int col) {
-        for (MapObject obj : mapObjects) {
-            if (obj.getRow() == row && obj.getCol() == col) {
-                return obj;
-            }
-        }
-        return null;
-    }
+//    /**
+//     * @author Yuheng Li
+//     * @param row
+//     * @param col
+//     * @return
+//     */
+//    public MapObject getObjectAt(int row, int col) {
+//        for (MapObject obj : mapObjects) {
+//            if (obj.getRow() == row && obj.getCol() == col) {
+//                return obj;
+//            }
+//        }
+//        return null;
+//    }
 
     public char[][] getGrid() {
         return grid;
