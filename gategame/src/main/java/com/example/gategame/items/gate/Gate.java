@@ -32,7 +32,13 @@ public class Gate implements MapItem {
     @Override
     public void interact(Player player) {
         if (isLocked) {
-            // use key to open
+            if (!player.getBackpack().getItems(GateKey.class).isEmpty()) {
+                GateKey key = player.getBackpack().getItems(GateKey.class).get(0);
+                // use key
+                player.getBackpack().removeItem(key.getId());
+                this.isLocked = false;
+                GameEngine.getInstance().gotoNextLevel();
+            }
         } else {
             System.out.println("Gate is open, are you ready to explore the next level?");
             GameEngine.getInstance().gotoNextLevel();
