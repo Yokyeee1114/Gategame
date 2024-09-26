@@ -1,9 +1,9 @@
 package com.example.gategame.role;
 
 import com.example.gategame.backpack.Inventory;
-import com.example.gategame.backpack.Item;
-import com.example.gategame.equipment.Potion;
-import com.example.gategame.equipment.Weapon;
+import com.example.gategame.items.Item;
+import com.example.gategame.items.general.potion.Potion;
+import com.example.gategame.items.general.weapon.Weapon;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

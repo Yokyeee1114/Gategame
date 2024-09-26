@@ -1,10 +1,11 @@
 package com.example.gategame.backpack;
 
 import com.example.gategame.GameEngine;
-import com.example.gategame.equipment.HpPotion;
-import com.example.gategame.equipment.NormalWeapon;
-import com.example.gategame.equipment.Potion;
-import com.example.gategame.equipment.Weapon;
+import com.example.gategame.items.general.potion.HpPotion;
+import com.example.gategame.items.general.weapon.NormalWeapon;
+import com.example.gategame.items.general.potion.Potion;
+import com.example.gategame.items.general.weapon.Weapon;
+import com.example.gategame.items.Item;
 import com.example.gategame.settings.LootConfig;
 
 import java.util.ArrayList;
@@ -39,7 +40,13 @@ public class Inventory {
         }
     }
 
-
+    /**
+     * create weapon based on given power
+     *
+     * @param name name of weapon
+     * @param power the atk of weapon
+     * @return a weapon
+     */
     public Weapon createWeapon(String name, int power) {
         // create and add to the inventory
         int id = nextId++;
@@ -48,10 +55,43 @@ public class Inventory {
         return newItem;
     }
 
+    /**
+     * create hp potion based on given power
+     *
+     * @param name name of potion
+     * @param power amount of hp potion can restore
+     * @return a hp potion created
+     */
     public HpPotion createPotion(String name, int power) {
         // create and add to the inventory
         int id = nextId++;
         HpPotion newItem = new HpPotion(id, name, power);
+        allItems.add(newItem);
+        return newItem;
+    }
+
+    /**
+     * Create a hp potion that can full restore player's hp
+     *
+     * @return an ultimate hp potion with power 100
+     */
+    public HpPotion createUltimatePotion() {
+        // create and add to the inventory
+        int id = nextId++;
+        HpPotion newItem = new HpPotion(id, "Ultimate Potion", 100);
+        allItems.add(newItem);
+        return newItem;
+    }
+
+    /**
+     * Create a hp potion that can restore player's hp by 30%
+     *
+     * @return a hp potion with power 30
+     */
+    public HpPotion createMediumPotion() {
+        // create and add to the inventory
+        int id = nextId++;
+        HpPotion newItem = new HpPotion(id, "Medium Potion", 30);
         allItems.add(newItem);
         return newItem;
     }
@@ -86,6 +126,7 @@ public class Inventory {
     /**
      * Generate random item for backpack as loot.
      * if minPower and maxPower is in unreasonable range, still generate an item in valid range.
+     *
      * @param backpack the backpack used to add loot
      * @param type type of item
      * @param minPower min power of the generated loot
