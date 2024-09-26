@@ -1,8 +1,8 @@
-package com.example.gategame.items;
+package com.example.gategame.items.gate;
 
+import com.example.gategame.GameEngine;
 import com.example.gategame.map.MapItem;
 import com.example.gategame.role.Player;
-import com.example.gategame.utils.PrintUtils;
 
 /**
  * @author Hao Ye(u7981083)
@@ -24,12 +24,18 @@ public class Gate implements MapItem {
         return 'D';
     }
 
+    /**
+     * if locked, use key to open, otherwise go to next level
+     *
+     * @param player
+     */
     @Override
     public void interact(Player player) {
         if (isLocked) {
-            PrintUtils.print("You need to find a key");
+            // use key to open
         } else {
-            PrintUtils.print("Go to next level");
+            System.out.println("Gate is open, are you ready to explore the next level?");
+            GameEngine.getInstance().gotoNextLevel();
         }
     }
 }

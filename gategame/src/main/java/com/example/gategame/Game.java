@@ -2,6 +2,8 @@ package com.example.gategame;
 
 import com.example.gategame.backpack.Inventory;
 import com.example.gategame.control.Location;
+import com.example.gategame.items.gate.Gate;
+import com.example.gategame.items.gate.GateKey;
 import com.example.gategame.map.Enemy;
 import com.example.gategame.map.GameMap;
 import com.example.gategame.map.MapItem;
@@ -10,6 +12,7 @@ import com.example.gategame.role.Monster;
 import com.example.gategame.role.MonsterType;
 import com.example.gategame.role.Player;
 import com.example.gategame.role.RoleFactory;
+import com.example.gategame.settings.LevelConfig;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -101,6 +104,9 @@ public class Game {
         playerLocation = new Location(1,1);
         stage = 1;
         player = RoleFactory.createPlayer();
+        // create Gate
+        createGate();
+
         GameMap map1 = new GameMap(new String[]{
                 "########D########",
                 "#..............##",
@@ -115,7 +121,24 @@ public class Game {
         initMapObjects();
         gameMaps.get(0).setMapObjects(extractMapObjects().get(0));
         gameMaps.get(0).displayMap(1,1);
+
     }
+
+    /**
+     * Init gate on map
+     */
+    private void createGate() {
+        LevelConfig levelConfig = GameEngine.getInstance().getCurrentLevelConfig();
+        Gate gate = new Gate(levelConfig.getGate().isLocked());
+        // @TODO add this gate to map
+
+        if (gate.isLocked()) {
+            GateKey gateKey = new GateKey();
+            // @TODO add this gate key to map
+        }
+    }
+
+
 //    Inventory inventory = Inventory.getInventory();
 
 //    public void initInventory(){

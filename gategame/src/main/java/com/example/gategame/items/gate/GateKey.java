@@ -1,8 +1,7 @@
-package com.example.gategame.items;
+package com.example.gategame.items.gate;
 
 import com.example.gategame.map.MapItem;
 import com.example.gategame.role.Player;
-import com.example.gategame.utils.PrintUtils;
 
 /**
  * @author Hao Ye(u7981083)
@@ -15,8 +14,15 @@ public class GateKey implements MapItem {
         return 'K';
     }
 
+    /**
+     * Put the key in play's backpack
+     *
+     * @param player
+     */
     @Override
     public void interact(Player player) {
-        PrintUtils.print("player get a key");
+        System.out.printf("%s got a key", player.getName());
+        // @TODO put this key to player's backpack
+
     }
 }
