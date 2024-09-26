@@ -1,6 +1,8 @@
 package com.example.gategame.map;
 
 import com.example.gategame.control.Location;
+import com.example.gategame.items.gate.Enemy;
+import com.example.gategame.items.gate.Gate;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,12 +22,8 @@ public class GameMap {
     public GameMap(List<MapItem> mapItems) {
         this.mapItems = mapItems;
     }
-    public void setItems(HashMap<Location,MapItem> mapItems){
-        List<Location> locations = new ArrayList<>(mapItems.keySet());
-        for (Location location :locations) {
-            grid[location.getRow()][location.getCol()] = mapItems.get(location).getSymbol();
-        }
-    }
+
+
 
     /**
      * @ author Yuheng Li
@@ -75,7 +73,7 @@ public class GameMap {
         return locations;
     }
 
-    public void displayMap(Location location) {
+    public void displayMap(Location location,HashMap<Location,MapItem> mapItems) {
         int playerRow = location.getRow();
         int playerCol = location.getCol();
         char[][] displayGrid = new char[rows][cols];
@@ -87,6 +85,10 @@ public class GameMap {
 //        for (MapObject obj : mapObjects) {
 //            displayGrid[obj.getRow()][obj.getCol()] = obj.getSymbol();
 //        }
+        List<Location> locations = new ArrayList<>(mapItems.keySet());
+        for (Location itemlocation :locations) {
+            displayGrid[itemlocation.getRow()][itemlocation.getCol()] = mapItems.get(itemlocation).getSymbol();
+        }
 
         // add the player
         displayGrid[playerRow][playerCol] = 'P';

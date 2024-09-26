@@ -22,7 +22,7 @@ import java.util.List;
 public class Game {
     private Player player;
     private List<GameMap> gameMaps;
-    private final List<HashMap<Location,MapItem>> mapObjects;
+    private final List<HashMap<Location,MapItem>> mapItemsList;
 
     private int stage;
 
@@ -32,22 +32,22 @@ public class Game {
 
     private  Location playerLocation;
 
-    public Game(Player player, List<GameMap> gameMaps, List<HashMap<Location, MapItem>> mapObjects, int stage, Location playerLocation) {
+    public Game(Player player, List<GameMap> gameMaps, List<HashMap<Location, MapItem>> mapItemsList, int stage, Location playerLocation) {
         this.player = player;
         this.gameMaps = gameMaps;
-        this.mapObjects = mapObjects;
+        this.mapItemsList = mapItemsList;
         this.stage = stage;
         this.playerLocation = playerLocation;
     }
 
     public Game() {
         gameMaps = new ArrayList<>();
-        mapObjects = new ArrayList<>();
+        mapItemsList = new ArrayList<>();
     }
 
-    public void initMapObjects(){
+    public void initMapItems(){
             List<Location> empty = gameMaps.get(0).getEmptyLocation();
-            HashMap<Location,MapItem> objects = new HashMap<>();
+            HashMap<Location,MapItem> mapItems = new HashMap<>();
 //            Random random = new Random();
 //
 //            int index = random.nextInt(empty.size());
@@ -62,20 +62,27 @@ public class Game {
         Monster monster2 = RoleFactory.createMonster(MonsterType.ELITE);
         Enemy enemy2 = new Enemy(monster2);
 
-        objects.put(location2, enemy2);
+        mapItems.put(location2, enemy2);
 
-        mapObjects.add(objects);
-    }
-
-    public  List<List<MapItem>> extractMapObjects() {
-        List<List<MapItem>> objectList = new ArrayList<>();
-
-        for (HashMap<Location, MapItem> map : mapObjects) {
-            List<MapItem> row = new ArrayList<>(map.values());
-            objectList.add(row);
+        LevelConfig levelConfig = GameEngine.getInstance().getCurrentLevelConfig();
+        Gate gate = new Gate(levelConfig.getGate().isLocked());
+        mapItems.put(new Location(5,2),gate);
+        // @TODO add this gate to map
+        if (gate.isLocked()) {
+            GateKey gateKey = new GateKey();
+            mapItems.put(new Location(4,1),gateKey);
+            // @TODO add this gate key to map
         }
-        return objectList;
+
+        mapItemsList.add(mapItems);
+
+        HashMap<Location,MapItem> mapItems2 = new HashMap<>();
+        mapItems2.put(new Location(1,8),RoleFactory.createMonster(MonsterType.BOSS));
+        mapItemsList.add(mapItems2);
+
     }
+
+
 
     public Location getPlayerLocation() {
         return playerLocation;
@@ -102,10 +109,10 @@ public class Game {
         stage = 1;
         player = RoleFactory.createPlayer();
         // create Gate
-        createGate();
+
 
         GameMap map1 = new GameMap(new String[]{
-                "########D########",
+                "#################",
                 "#..............##",
                 "#.####.#####.#.##",
                 "#.#.........#.###",
@@ -113,12 +120,21 @@ public class Game {
                 "#...#.....#...###",
                 "#################"
         });
+        GameMap map2 = new GameMap(new String[]{
+                "#################",
+                "#..............##",
+                "#.####.#####.#.##",
+                "#.#.........#.###",
+                "#.#.#######.#.###",
+                "#################",
+                "#################"
+        });
 
         gameMaps.add(map1);
-        initMapObjects();
-        gameMaps.get(0).setItems(mapObjects.get(0));
+        gameMaps.add(map2);
+        initMapItems();
 //        gameMaps.get(0).setMapObjects(extractMapObjects().get(0));
-        gameMaps.get(0).displayMap(1,1);
+        gameMaps.get(0).displayMap(playerLocation,mapItemsList.get(0));
 
     }
 
@@ -126,14 +142,7 @@ public class Game {
      * Init gate on map
      */
     private void createGate() {
-        LevelConfig levelConfig = GameEngine.getInstance().getCurrentLevelConfig();
-        Gate gate = new Gate(levelConfig.getGate().isLocked());
-        // @TODO add this gate to map
 
-        if (gate.isLocked()) {
-            GateKey gateKey = new GateKey();
-            // @TODO add this gate key to map
-        }
     }
 
 
@@ -158,8 +167,8 @@ public class Game {
         return gameMaps;
     }
 
-    public List<HashMap<Location, MapItem>> getMapObjects() {
-        return mapObjects;
+    public List<HashMap<Location, MapItem>> getMapItemsList() {
+        return mapItemsList;
     }
 
     public static void main(String[] args) {
