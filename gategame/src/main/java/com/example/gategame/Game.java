@@ -25,6 +25,7 @@ public class Game {
     private final List<HashMap<Location,MapItem>> mapItemsList;
 
     private int stage;
+    public boolean bagFlag;
 
     public int getStage() {
         return stage;
@@ -32,17 +33,19 @@ public class Game {
 
     private  Location playerLocation;
 
-    public Game(Player player, List<GameMap> gameMaps, List<HashMap<Location, MapItem>> mapItemsList, int stage, Location playerLocation) {
+    public Game(Player player, List<GameMap> gameMaps, List<HashMap<Location, MapItem>> mapItemsList, int stage, Location playerLocation,boolean bagFlag) {
         this.player = player;
         this.gameMaps = gameMaps;
         this.mapItemsList = mapItemsList;
         this.stage = stage;
         this.playerLocation = playerLocation;
+        this.bagFlag = bagFlag;
     }
 
     public Game() {
         gameMaps = new ArrayList<>();
         mapItemsList = new ArrayList<>();
+        bagFlag = false;
     }
 
     public void initMapItems(){
@@ -67,11 +70,9 @@ public class Game {
         LevelConfig levelConfig = GameEngine.getInstance().getCurrentLevelConfig();
         Gate gate = new Gate(levelConfig.getGate().isLocked());
         mapItems.put(new Location(5,2),gate);
-        // @TODO add this gate to map
         if (gate.isLocked()) {
             GateKey gateKey = new GateKey();
             mapItems.put(new Location(4,1),gateKey);
-            // @TODO add this gate key to map
         }
 
         mapItemsList.add(mapItems);
@@ -108,6 +109,8 @@ public class Game {
         playerLocation = new Location(1,1);
         stage = 1;
         player = RoleFactory.createPlayer();
+        player.getBackpack().addItem(Inventory.getInventory().createPotion("potion",100));
+        player.getBackpack().addItem(Inventory.getInventory().createWeapon("sword",20));
         // create Gate
 
 

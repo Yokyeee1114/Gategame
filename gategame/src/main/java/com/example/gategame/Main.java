@@ -36,6 +36,7 @@ import java.util.regex.Pattern;
         }
 
         public static Game gameLoop(Game game) {
+            boolean bagFlag  = game.bagFlag;
             Player player = game.getPlayer();
             List<GameMap> gameMaps = game.getGameMaps();
             List<HashMap<Location, MapItem>> mapItemsList = game.getMapItemsList();
@@ -52,48 +53,67 @@ import java.util.regex.Pattern;
                 return game;
             }
 
-            if(input.length()>1){
-                if(Pattern.matches("[WASD]*",input)){
-                    Location startLocation = location;
-                    char[] inputs = input.toCharArray();
-                    for (int i = 0; i < inputs.length ; i++) {
-                        char order = inputs[i];
-                        if (gameMap.isValidMove(Control.move(order, location)) && !isEvent(Control.move(order, location),mapItems)) {
+            if(!bagFlag){
+                if(input.length()>1){
+                    if(Pattern.matches("[WASD]*",input)){
+                        Location startLocation = location;
+                        char[] inputs = input.toCharArray();
+                        for (int i = 0; i < inputs.length ; i++) {
+                            char order = inputs[i];
+                            if (gameMap.isValidMove(Control.move(order, location)) && !isEvent(Control.move(order, location),mapItems)) {
+                                location = Control.move(order, location);
+                            } else {
+                                System.out.println("Invalid move!");
+                                location = startLocation;
+                                break;
+                            }
+                        }
+                        gameMap.displayMap(location,mapItems);
+                    }
+                }else {
+                    char order = input.charAt(0);
+                    if (Pattern.matches("[WASD]", String.valueOf(order))) {
+                        if (gameMap.isValidMove(Control.move(order, location))) {
                             location = Control.move(order, location);
+                            boolean stageChange = eventTrigger(location, mapItems, player);
+                            if(player.isAlive()){
+                                gameMap.displayMap(location,mapItems);}
+                            if(stageChange){
+                                Location start = new Location(1,1);
+                                gameMaps.get(stage).displayMap(start,mapItemsList.get(stage));
+                                return new Game(player,gameMaps,mapItemsList,stage+1,start,bagFlag);
+                            }
                         } else {
                             System.out.println("Invalid move!");
-                            location = startLocation;
-                            break;
                         }
+                    } else if (order == 'M') {
+                        gameMap.displayMap(location,mapItems);
+                    } else if (order == 'P') {
+                        System.out.println(player.toString());
+                    }else if(order == 'I'){
+                        bagFlag = true;
+                        player.getBackpack().displayItem();
+                        System.out.println("open backpack");
                     }
-                    gameMap.displayMap(location,mapItems);
                 }
-            }else {
+            }else{
                 char order = input.charAt(0);
-                if (Pattern.matches("[WASD]", String.valueOf(order))) {
-                    if (gameMap.isValidMove(Control.move(order, location))) {
-                        location = Control.move(order, location);
-                        boolean stageChange = eventTrigger(location, mapItems, player);
-                        if(player.isAlive()){
-                            gameMap.displayMap(location,mapItems);}
-                        if(stageChange){
-                            Location start = new Location(1,1);
-                            gameMaps.get(stage).displayMap(start,mapItemsList.get(stage));
-                            return new Game(player,gameMaps,mapItemsList,stage+1,start);
-
-                        }
-
-                    } else {
-                        System.out.println("Invalid move!");
-                    }
-                } else if (order == 'M') {
+                if(order == 'B'){
+                    bagFlag = false;
                     gameMap.displayMap(location,mapItems);
-                } else if (order == 'P') {
+                }else if(Pattern.matches("[1-9]",String.valueOf(order))){
+                    int index = order;
+                    player.getBackpack().useItem(player.getBackpack().getItem(index),player);
                     System.out.println(player.toString());
+                }else {
+                    System.out.println("Invalid input!");
                 }
+
             }
+
+
             mapItemsList.set(stage-1,mapItems);
-            return new Game(player,gameMaps,mapItemsList,stage,location);
+            return new Game(player,gameMaps,mapItemsList,stage,location,bagFlag);
 
         }
 
@@ -103,6 +123,7 @@ import java.util.regex.Pattern;
             List<Location> locations = new ArrayList<>(mapObject.keySet());
             return locations.contains(location);
         }
+
 
 
         public static boolean eventTrigger(Location location, HashMap<Location,MapItem> mapItems, Player player){
