@@ -1,11 +1,10 @@
 package com.example.gategame.role;
 
-import com.example.gategame.backpack.Backpack;
 import com.example.gategame.backpack.Inventory;
-import com.example.gategame.backpack.Item;
+import com.example.gategame.items.Item;
 import com.example.gategame.backpack.MonsterBackpack;
-import com.example.gategame.equipment.Potion;
-import org.junit.jupiter.api.BeforeEach;
+import com.example.gategame.items.general.potion.Potion;
+import com.example.gategame.items.general.UsableItem;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -22,8 +21,8 @@ public class LootTest {
         assertNotNull(item);
         assertTrue(backpack.containsItem(item));
         assertInstanceOf(Potion.class, item);
-        assertTrue(item.getPower() >= 1);
-        assertTrue(item.getPower() < 10);
+        assertTrue(((UsableItem) item).getPower() >= 1);
+        assertTrue(((UsableItem) item).getPower() < 10);
 
     }
 

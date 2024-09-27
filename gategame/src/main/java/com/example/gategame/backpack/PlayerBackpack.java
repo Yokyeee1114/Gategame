@@ -1,7 +1,9 @@
 package com.example.gategame.backpack;
 
-import com.example.gategame.equipment.Potion;
-import com.example.gategame.equipment.Weapon;
+import com.example.gategame.items.general.potion.Potion;
+import com.example.gategame.items.general.weapon.Weapon;
+import com.example.gategame.items.Item;
+import com.example.gategame.items.general.UsableItem;
 import com.example.gategame.role.Role;
 
 import java.util.ArrayList;
@@ -105,8 +107,12 @@ public class PlayerBackpack extends GeneralBackPack {
      * @param role to be affected
      */
     public void useItem(Item item, Role role) {
-        getItems().remove(item);
-        item.use(role);
+        if (item instanceof UsableItem) {
+            getItems().remove(item);
+            ((UsableItem) item).use(role);
+        } else {
+            System.out.println(item.getName() + " cannot be used.");
+        }
     }
 
     /**

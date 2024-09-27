@@ -1,7 +1,7 @@
 package com.example.gategame.map;
 
-import com.example.gategame.items.Gate;
-import com.example.gategame.items.GateKey;
+import com.example.gategame.items.gate.Gate;
+import com.example.gategame.items.gate.GateKey;
 import com.example.gategame.settings.LevelConfig;
 
 import java.util.ArrayList;

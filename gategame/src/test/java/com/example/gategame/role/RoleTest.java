@@ -1,7 +1,7 @@
 package com.example.gategame.role;
 
 import com.example.gategame.backpack.Inventory;
-import com.example.gategame.equipment.Potion;
+import com.example.gategame.items.general.potion.Potion;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
