@@ -1,5 +1,9 @@
 package com.example.gategame.settings;
 
+
+
+import java.util.List;
+
 /**
  * @author Hao Ye(u7981083)
  * Used to config initial player state
@@ -9,6 +13,7 @@ public class PlayerConfig {
     private String name;
     private int power;
     private int health;
+    private List<ItemConfig> initialItems;
 
     public String getName() {
         return name;
@@ -32,5 +37,13 @@ public class PlayerConfig {
 
     public void setHealth(int health) {
         this.health = health;
+    }
+
+    public List<ItemConfig> getInitialItems() {
+        return initialItems;
+    }
+
+    public void setInitialItems(List<ItemConfig> initialItems) {
+        this.initialItems = initialItems;
     }
 }

@@ -36,6 +36,11 @@ public class GameEngine {
         return settingsConfig.getLootConfig();
     }
 
+    public LootRules getLootRules() {
+        return settingsConfig.getLootRules();
+    }
+
+    public static Integer level;
     public int currentLevel;
 
     public static void main(String[] args) {

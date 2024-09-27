@@ -90,6 +90,8 @@ import java.util.regex.Pattern;
                     gameMap.displayMap(location,mapItems);
                 } else if (order == 'P') {
                     System.out.println(player.toString());
+                } else if (order == 'I') {
+                    player.getBackpack().displayItem();
                 }
             }
             mapItemsList.set(stage-1,mapItems);

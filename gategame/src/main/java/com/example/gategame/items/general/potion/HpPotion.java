@@ -47,7 +47,7 @@ public class HpPotion extends GeneralItem implements Potion, MapItem {
 
     @Override
     public Character getSymbol() {
-        return 'P';
+        return '+';
     }
 
     @Override
