@@ -1,5 +1,7 @@
 package com.example.gategame.backpack;
 
+import com.example.gategame.items.Item;
+
 import java.util.List;
 
 

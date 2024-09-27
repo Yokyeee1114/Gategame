@@ -1,7 +1,7 @@
 package com.example.gategame.settings;
 
 import com.example.gategame.backpack.Inventory;
-import com.example.gategame.backpack.Item;
+import com.example.gategame.items.Item;
 
 /**
  * @author Yeming

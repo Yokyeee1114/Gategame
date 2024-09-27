@@ -3,8 +3,6 @@ package com.example.gategame.role;
 import com.example.gategame.GameEngine;
 import com.example.gategame.backpack.Backpack;
 import com.example.gategame.backpack.Inventory;
-import com.example.gategame.backpack.Item;
-import com.example.gategame.backpack.PlayerBackpack;
 import com.example.gategame.settings.ItemConfig;
 import com.example.gategame.settings.MonsterConfig;
 import com.example.gategame.settings.MonstersConfig;
