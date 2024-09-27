@@ -2,8 +2,8 @@ package com.example.gategame.role;
 
 import com.example.gategame.backpack.Inventory;
 import com.example.gategame.backpack.PlayerBackpack;
-import com.example.gategame.equipment.HpPotion;
-import com.example.gategame.equipment.Weapon;
+import com.example.gategame.items.general.potion.HpPotion;
+import com.example.gategame.items.general.weapon.Weapon;
 
 import java.util.List;
 

@@ -1,10 +1,7 @@
 package com.example.gategame;
 
 import com.example.gategame.map.MapFactory;
-import com.example.gategame.settings.GameConfigLoader;
-import com.example.gategame.settings.LootConfig;
-import com.example.gategame.settings.MonstersConfig;
-import com.example.gategame.settings.SettingsConfig;
+import com.example.gategame.settings.*;
 
 /**
  * @author Hao Ye(u7981083)
@@ -27,6 +24,10 @@ public class GameEngine {
         return settingsConfig;
     }
 
+    public LevelConfig getCurrentLevelConfig() {
+        return settingsConfig.getLevels().get(currentLevel);
+    }
+
     public MonstersConfig getMonsterConfig() {
         return settingsConfig.getMonstersConfig();
     }
@@ -35,12 +36,12 @@ public class GameEngine {
         return settingsConfig.getLootConfig();
     }
 
-    public static Integer level;
+    public int currentLevel;
 
     public static void main(String[] args) {
         GameEngine.getInstance().loadEngine();
         // start play
-        setLevel(1);
+        GameEngine.getInstance().setCurrentLevel(1);
     }
 
     /**
@@ -50,9 +51,23 @@ public class GameEngine {
         settingsConfig = GameConfigLoader.loadConfig();
     }
 
-    public static void setLevel(Integer level) {
-        GameEngine.level = level;
+    /**
+     * go to new level
+     *
+     * @param level
+     */
+    public void setCurrentLevel(int level) {
+        this.currentLevel = level;
         MapFactory.createMap(GameConfigLoader.config.getLevels().get(level));
         // display map to play
+
+    }
+
+    public int getCurrentLevel() {
+        return currentLevel;
+    }
+
+    public void gotoNextLevel() {
+        setCurrentLevel(++currentLevel);
     }
 }

@@ -1,6 +1,6 @@
-package com.example.gategame.equipment;
+package com.example.gategame.items.general.weapon;
 
-import com.example.gategame.backpack.Inventory;
+import com.example.gategame.items.general.GeneralItem;
 import com.example.gategame.map.MapItem;
 import com.example.gategame.role.Player;
 import com.example.gategame.role.Role;
