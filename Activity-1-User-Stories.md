@@ -1,5 +1,5 @@
 # User Stories
-
+###Map
 1. As a casual player, I want an easy map option with lower enemy levels and simplified challenges, so that I can enjoy the game at my own pace without feeling overwhelmed.
 2. As a regular player, I want a medium difficulty map with balanced enemy strength and moderate challenges, so that I can experience a fair level of challenge while progressing through the game.
 3. As a hardcore player, I want a hard map with tougher enemies and complex challenges, so that I can push my skills to the limit and feel a sense of accomplishment after completing the map.
@@ -8,17 +8,13 @@
 6. As a game designer, I want the map to be linked to items, so that I can pick up something to unlock the next level of the map.
 7. As a tester, I want the composition of the map to be clear, so that it will be easy to test.
 8. As a game designer, I want the maps to create difficulty for the characters in the right places, so that it makes the game more interesting.
-
-
-
+###Control
 1. As a player, I want to move my character in four directions (up, down, left, right) using the keyboard, so that I can easily navigate the maze and explore the environment.
 2. As a game designer, I want the player's character to be restricted by walls and boundaries, so that they must navigate through the correct paths and follow the game’s rules.
 3. As a game designer, I want the player's character to trigger events when they reach specific locations in the map, so that these interactions progress the story and gameplay.
 4. As a player, I want the ability to move quickly to specified locations within the map, so that I can save time and reduce repetitive work.
 5. As a player, I want to find items in the game that grant special movement abilities, so that I can choose different ways to win the game.
-
-
-
+###Inventory
 1. As a player, I want to have an inventory system so that I can view the items I collected during the game.
 2. As a player, I want to add items to my inventory after defeating enemies, so that it has more fun to beat the enemies.
 3. As a player, I want the inventory system to contain items that can boost my attack, so that I can beat enemies easier.
@@ -27,9 +23,7 @@
 6. As a game designer, I want the player to have the ability to remove items from the inventory, so that it is more challenging to play.
 7. As a game designer, I want the inventory to have limited capacity, so that it has more strategy involved in which items to keep or discard.
 8. As a developer, I want the inventory system to have real-time updates when the items are added or removed, so that the gameplay is accurate.
-
-
-
+###Enemy
 1. As a player, I want to receive loot when I defeat enemies, so that I can become stronger and challenge more powerful foes.
 2. As a player, I want to avoid combat when encountering extremely powerful enemies, so that I can wait until I am stronger to challenge them later.
 3. As a player, I want to use items to restore my health during combat, so that I can enhance my strength by collecting items.
