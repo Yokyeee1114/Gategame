@@ -1,10 +1,9 @@
 package com.example.gategame.items.gate;
 
 import com.example.gategame.battle.BattleField;
-import com.example.gategame.control.Location;
 import com.example.gategame.map.MapItem;
-import com.example.gategame.role.Monster;
 import com.example.gategame.role.Player;
+import com.example.gategame.role.monster.Monster;
 
 public class Enemy implements MapItem {
 

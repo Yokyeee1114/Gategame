@@ -1,6 +1,6 @@
 package com.example.gategame.settings;
 
-import com.example.gategame.role.MonsterType;
+import com.example.gategame.role.monster.MonsterType;
 
 import java.io.Serializable;
 import java.util.List;
@@ -20,6 +20,14 @@ public class MonsterConfig implements Serializable {
     private Integer power;
     // the health of monster
     private Integer health;
+
+    public MonsterConfig(MonsterType type, List<String> lootItems, Integer lootAmount, Integer power, Integer health) {
+        this.type = type;
+        this.lootItems = lootItems;
+        this.lootAmount = lootAmount;
+        this.power = power;
+        this.health = health;
+    }
 
     public MonsterType getType() {
         return type;

@@ -2,16 +2,15 @@ package com.example.gategame;
 
 import com.example.gategame.backpack.Inventory;
 import com.example.gategame.control.Location;
+import com.example.gategame.items.gate.Enemy;
 import com.example.gategame.items.gate.Gate;
 import com.example.gategame.items.gate.GateKey;
-import com.example.gategame.items.gate.Enemy;
 import com.example.gategame.map.GameMap;
 import com.example.gategame.map.MapItem;
-import com.example.gategame.map.MapObject;
-import com.example.gategame.role.Monster;
-import com.example.gategame.role.MonsterType;
 import com.example.gategame.role.Player;
 import com.example.gategame.role.RoleFactory;
+import com.example.gategame.role.monster.Monster;
+import com.example.gategame.role.monster.MonsterType;
 import com.example.gategame.settings.LevelConfig;
 
 import java.util.ArrayList;
