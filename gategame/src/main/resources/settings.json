@@ -29,9 +29,22 @@
       ]
     }
   ],
-  "lootConfig": {
-    "minPower": 5,
-    "maxPower": 20
+  "lootRules": {
+    "minion": {
+      "minPower": 5,
+      "maxPower": 15,
+      "potionRate": 2
+    },
+    "elite": {
+      "minPower": 15,
+      "maxPower": 25,
+      "potionRate": 2
+    },
+    "boss": {
+      "minPower": 20,
+      "maxPower": 30,
+      "potionRate": 2
+    }
   },
   "items": [
     {
@@ -43,7 +56,24 @@
   "playerConfig": {
     "name": "Player",
     "power": 20,
-    "health": 100
+    "health": 100,
+    "initialItems": [
+      {
+        "type": "potion",
+        "name": "Small Potion",
+        "power": 10
+      },
+      {
+        "type": "potion",
+        "name": "Medium Potion",
+        "power": 30
+      },
+      {
+        "type": "potion",
+        "name": "Ultimate Potion",
+        "power": 100
+      }
+    ]
   },
   "monstersConfig": {
     "minor": {
@@ -52,7 +82,7 @@
         "P"
       ],
       "lootAmount": 1,
-      "power": 10,
+      "power": 5,
       "health": 50
     },
     "elite": {
@@ -62,7 +92,7 @@
         "W"
       ],
       "lootAmount": 2,
-      "power": 20,
+      "power": 15,
       "health": 100
     },
     "boss": {
@@ -73,7 +103,7 @@
         "K"
       ],
       "lootAmount": 3,
-      "power": 30,
+      "power": 20,
       "health": 200
     }
   },

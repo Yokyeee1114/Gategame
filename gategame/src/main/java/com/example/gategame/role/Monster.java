@@ -2,6 +2,7 @@ package com.example.gategame.role;
 
 
 import com.example.gategame.backpack.Backpack;
+import com.example.gategame.backpack.MonsterBackpack;
 import com.example.gategame.battle.BattleField;
 import com.example.gategame.map.MapItem;
 
@@ -31,5 +32,9 @@ public class Monster extends Role implements MapItem {
     public void interact(Player player) {
         System.out.printf("%s fighting with %s%n", player.getName(), getName());
         BattleField.battle(player, this);
+    }
+
+    public Backpack getBackpack() {
+        return backpack;
     }
 }

@@ -50,7 +50,7 @@ public class Inventory {
     public Weapon createWeapon(String name, int power) {
         // create and add to the inventory
         int id = nextId++;
-        Weapon newItem = new NormalWeapon(id, name, power);
+        NormalWeapon newItem = new NormalWeapon(id, name, power);
         allItems.add(newItem);
         return newItem;
     }
@@ -106,13 +106,15 @@ public class Inventory {
      * @param amount control the number of created item
      * @return a backpack with loot added
      */
-    public Backpack createMonsterBackpack(List<String> types, Integer amount) {
-        LootConfig lootConfig = GameEngine.getInstance().getLootConfig();
+    public Backpack createMonsterBackpack(String monsterType, List<String> types, Integer amount) {
+        //LootConfig lootConfig = GameEngine.getInstance().getLootConfig();
+        LootConfig lootConfig = GameEngine.getInstance().getLootRules().getLootConfig(monsterType);
         int minPower = lootConfig.getMinPower();
         int maxPower = lootConfig.getMaxPower();
+        int potionRate = lootConfig.getPotionRate();
         MonsterBackpack backpack = new MonsterBackpack();
         for (String type : types) {
-            generateLoot(backpack, type, minPower, maxPower);
+            generateLoot(backpack, type, minPower, maxPower, potionRate);
         }
         return backpack;
     }
@@ -131,24 +133,23 @@ public class Inventory {
      * @param type type of item
      * @param minPower min power of the generated loot
      * @param maxPower max power of the generated loot
+     * @param potionRate rate of potion's power.
      */
-    public void generateLoot(Backpack backpack, String type, int minPower, int maxPower) {
+    public void generateLoot(Backpack backpack, String type, int minPower, int maxPower, int potionRate) {
         Random random = new Random();
         String name;
         int power;
 
         switch (type) {
             case "W" -> { // weapon
-                name = "Small Sword"; // might need to change the name later
-
                 power = random.nextInt(minPower, maxPower);
+                name = getItemPrefix(power, "W");
                 Weapon newItem = createWeapon(name, power);
                 backpack.addItem(newItem);
             }
             case "P" -> { // potion
-                name = "Small HP Potion"; // might need to change the name later
-
-                power = random.nextInt(minPower, maxPower);
+                power = random.nextInt(minPower, maxPower) * potionRate;
+                name = getItemPrefix(power, "P");
                 Potion newItem = createPotion(name, power);
                 backpack.addItem(newItem);
             }
@@ -159,15 +160,39 @@ public class Inventory {
     }
 
     /**
+     * Generate item name based on power
+     * @param power the power of item
+     * @param itemType the type of item
+     * @return
+     */
+    public String getItemPrefix(int power, String itemType) {
+        String[] weaponTypes = {"Sword", "Axe", "Mace", "Spear"};
+        if (itemType.equals("P")) {
+            if (power < 10) return "Small Potion";
+            else if (power <= 30) return "Medium Potion";
+            else return "Large Potion";
+        } else if (itemType.equals("W")) {
+            Random random = new Random();
+            String weaponType = weaponTypes[random.nextInt(weaponTypes.length)];
+            if (power < 15) return "Weak " + weaponType;
+            else if (power <= 25) return "Strong " + weaponType;
+            else return "Mighty " + weaponType;
+        } else {
+            return ""; // Default prefix for unknown types
+        }
+    }
+
+
+    /**
      * Player get all loot from monster backpack.
      * @param playerBackpack the backpack of player
-     * @param monsterBackpack the backpack of beaten monster
+     * @param backpack the backpack of beaten monster
      */
-    public void getLootFromBackpack(PlayerBackpack playerBackpack, MonsterBackpack monsterBackpack) {
-        for (Item item : monsterBackpack.getItems()) {
+    public void getLootFromBackpack(PlayerBackpack playerBackpack, Backpack backpack) {
+        for (Item item : backpack.getItems()) {
             playerBackpack.addItem(item);
         }
-        monsterBackpack.clearBackpack();
+        backpack.clearBackpack();
     }
 
 
