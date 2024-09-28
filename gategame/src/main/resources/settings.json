@@ -7,10 +7,10 @@
         "isLocked": false
       },
       "objects": {
-          "minor": 3,
-          "elite": 1,
-          "boss": 1
-        }
+        "minor": 3,
+        "elite": 1,
+        "boss": 1
+      }
     },
     {
       "level": 2,
@@ -19,29 +19,22 @@
         "isLocked": true
       },
       "objects": {
-          "minor": 6,
-          "elite": 2,
-          "boss": 1
-<<<<<<<<< Temporary merge branch 1
-        }
-      ]
+        "minor": 6,
+        "elite": 2,
+        "boss": 1
+      }
     },
     {
       "level": 3,
-      "name": "The Third level",
+      "name": "The third level",
       "gate": {
         "isLocked": true
       },
-      "objects": [
-        {
-          "minor": 10,
-          "elite": 6,
-          "boss": 3
-        }
-      ]
-=========
+      "objects": {
+        "minor": 10,
+        "elite": 5,
+        "boss": 2
       }
->>>>>>>>> Temporary merge branch 2
     }
   ],
   "lootRules": {
