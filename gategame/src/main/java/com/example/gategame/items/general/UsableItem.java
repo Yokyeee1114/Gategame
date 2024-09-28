@@ -1,6 +1,7 @@
 package com.example.gategame.items.general;
 
 import com.example.gategame.items.Item;
+import com.example.gategame.role.Player;
 import com.example.gategame.role.Role;
 
 /**
@@ -9,7 +10,7 @@ import com.example.gategame.role.Role;
  * Which is different to main Item such as key.
  */
 public interface UsableItem extends Item {
-    void use(Role role);
+    void use(Player player);
     int getPower();
 
 }

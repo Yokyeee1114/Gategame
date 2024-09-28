@@ -44,4 +44,7 @@ public class Gate implements MapItem {
             GameEngine.getInstance().gotoNextLevel();
         }
     }
+    public void open(){
+        isLocked = false;
+    }
 }

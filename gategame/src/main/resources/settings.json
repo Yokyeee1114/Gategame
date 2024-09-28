@@ -7,10 +7,10 @@
         "isLocked": false
       },
       "objects": {
-          "minor": 3,
-          "elite": 1,
-          "boss": 1
-        }
+        "minor": 3,
+        "elite": 1,
+        "boss": 1
+      }
     },
     {
       "level": 2,
@@ -19,9 +19,21 @@
         "isLocked": true
       },
       "objects": {
-          "minor": 6,
-          "elite": 2,
-          "boss": 1
+        "minor": 6,
+        "elite": 2,
+        "boss": 1
+      }
+    },
+    {
+      "level": 3,
+      "name": "The third level",
+      "gate": {
+        "isLocked": true
+      },
+      "objects": {
+        "minor": 10,
+        "elite": 5,
+        "boss": 2
       }
     }
   ],
@@ -51,7 +63,7 @@
   ],
   "playerConfig": {
     "name": "Player",
-    "power": 20,
+    "power": 30,
     "health": 100,
     "initialItems": [
       {
@@ -88,7 +100,7 @@
         "W"
       ],
       "lootAmount": 2,
-      "power": 15,
+      "power": 10,
       "health": 100
     },
     "boss": {

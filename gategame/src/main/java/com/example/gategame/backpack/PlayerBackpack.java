@@ -4,6 +4,7 @@ import com.example.gategame.items.general.potion.Potion;
 import com.example.gategame.items.general.weapon.Weapon;
 import com.example.gategame.items.Item;
 import com.example.gategame.items.general.UsableItem;
+import com.example.gategame.role.Player;
 import com.example.gategame.role.Role;
 
 import java.util.ArrayList;
@@ -74,7 +75,7 @@ public class PlayerBackpack extends GeneralBackPack {
         }
         Item item = getItems().get(id);
         getItems().remove(item);
-        System.out.println("item " + item.getName() + " removed");
+        System.out.println("item " + item.getName() + " used");
         return item;
     }
 
@@ -104,16 +105,20 @@ public class PlayerBackpack extends GeneralBackPack {
      * Remove the item from backpack before using it.
      *
      * @param item to be used
-     * @param role to be affected
+     * @param player to be affected
      */
-    public void useItem(Item item, Role role) {
+    public void useItem(Item item, Player player) {
         if (item instanceof UsableItem) {
-            getItems().remove(item);
-            ((UsableItem) item).use(role);
+            ((UsableItem) item).use(player);
         } else {
             System.out.println(item.getName() + " cannot be used.");
         }
     }
+
+    public int getSize(){
+        return getItems().size();
+    }
+
 
     /**
      * Method to find all weapons

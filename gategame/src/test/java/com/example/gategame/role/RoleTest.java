@@ -15,10 +15,10 @@ class RoleTest {
     @Test
     @DisplayName("Change role's power")
     void setPower() {
-        Role role = new Role("player", "", 10, 100);
-        assertEquals(10, role.getPower());
-        role.setPower(15);
-        assertEquals(15, role.getPower());
+        Player player = new Player("player", "", 10, 100);
+        assertEquals(10, player.getPower());
+        player.setPower(15);
+        assertEquals(15, player.getPower());
     }
 
     @Test
@@ -69,12 +69,12 @@ class RoleTest {
     @Test
     @DisplayName("Use HpPotion to restore health")
     void restoreHealth() {
-        Role role = new Role("player", "", 20, 100);
-        role.setHealth(50);
+        Player player = new Player("player", "", 20, 100);
+        player.setHealth(50);
         Potion potion = Inventory.getInventory().createPotion("Small Curing Potion", 30);
-        potion.use(role);
-        assertEquals(80, role.getHealth());
-        potion.use(role);
-        assertEquals(100, role.getHealth());
+        potion.use(player);
+        assertEquals(80, player.getHealth());
+        potion.use(player);
+        assertEquals(100, player.getHealth());
     }
 }

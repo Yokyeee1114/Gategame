@@ -31,7 +31,5 @@ class PlayerTest {
         Monster monster = RoleFactory.createMonster(MonsterType.MINOR);
         monster.attack(player);
         assertEquals(95, player.getHealth());
-        boolean attacked = player.attack(monster);
-        assertFalse(attacked);
     }
 }

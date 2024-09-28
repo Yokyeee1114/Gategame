@@ -1,8 +1,6 @@
 package com.example.gategame.map;
 
-import com.example.gategame.control.Location;
-import com.example.gategame.items.gate.Enemy;
-import com.example.gategame.items.gate.Gate;
+import com.example.gategame.Move.Location;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -59,7 +57,9 @@ public class GameMap {
 //    public void setMapObjects(List<MapObject> mapObjects) {
 //        this.mapObjects = mapObjects;
 //    }
-
+    public Location getGateLocation(){
+        return new Location(rows-2,cols-2);
+    }
     public List<Location> getEmptyLocation(){
         List<Location> locations = new ArrayList<>();
         for (int i = 0; i < rows; i++) {

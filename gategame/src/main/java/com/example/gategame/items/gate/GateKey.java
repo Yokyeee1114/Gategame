@@ -23,7 +23,7 @@ public class GateKey implements MapItem, Item {
     @Override
     public void interact(Player player) {
         //System.out.printf("%s got a key", player.getName());
-        player.getBackpack().addItem(this); // addItem method has a print message already
+//        player.getBackpack().addItem(this); // addItem method has a print message already
     }
 
     @Override
