@@ -4,7 +4,6 @@ import com.example.gategame.GameEngine;
 import com.example.gategame.role.monster.*;
 import com.example.gategame.settings.*;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -30,15 +29,12 @@ class RoleFactoryTest {
         settingsConfig = GameEngine.getInstance().getSettingsConfig();
         monstersConfig = GameEngine.getInstance().getMonsterConfig();
         currentLevelConfig = GameEngine.getInstance().getCurrentLevelConfig();
-    }
-
-    @BeforeEach
-    void setUp() {
         monstersConfig.setMinor(new MonsterConfig(MonsterType.MINOR, new ArrayList<>(), 0, 10, 100));
         monstersConfig.setElite(new MonsterConfig(MonsterType.ELITE, new ArrayList<>(), 0, 20, 200));
         settingsConfig.setPlayerConfig(new PlayerConfig("Test", 10, 100, new ArrayList<>()));
         currentLevelConfig.setObjects(new MapObjectConfig(3, 2, 1));
     }
+
 
     @Test
     @DisplayName("Create minor monster based on config")
