@@ -1,5 +1,6 @@
 package com.example.gategame.items.general;
 
+import com.example.gategame.role.Player;
 import com.example.gategame.role.Role;
 
 /**
@@ -25,7 +26,7 @@ public class GeneralItem implements UsableItem {
         return name;
     }
 
-    public void use(Role role) {
+    public void use(Player player) {
 
     }
 

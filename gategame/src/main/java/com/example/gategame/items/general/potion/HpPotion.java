@@ -23,10 +23,10 @@ public class HpPotion extends GeneralItem implements Potion, MapItem {
      * @param role the target
      */
     @Override
-    public void use(Role role) {
-        Integer oldHealth = role.getHealth();
-        role.restoreHealth(getHpPotionEffect(role));
-        PrintUtils.print("%s used %s, restored %s HP".formatted(role.getName(),super.getName(), role.getHealth() - oldHealth));
+    public void use(Player player) {
+        Integer oldHealth = player.getHealth();
+        player.restoreHealth(getHpPotionEffect(player));
+        PrintUtils.print("%s used %s, restored %s HP".formatted(player.getName(),super.getName(), player.getHealth() - oldHealth));
     }
 
     /**

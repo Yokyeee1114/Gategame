@@ -111,6 +111,7 @@ public class Game {
         player = RoleFactory.createPlayer();
         player.getBackpack().addItem(Inventory.getInventory().createPotion("potion",100));
         player.getBackpack().addItem(Inventory.getInventory().createWeapon("sword",20));
+        player.getBackpack().addItem(Inventory.getInventory().createWeapon("Holy sword",200));
         // create Gate
 
 

@@ -3,7 +3,9 @@ package com.example.gategame;
 
 import com.example.gategame.control.Control;
 import com.example.gategame.control.Location;
+import com.example.gategame.items.Item;
 import com.example.gategame.items.gate.Gate;
+import com.example.gategame.items.general.weapon.NormalWeapon;
 import com.example.gategame.map.GameMap;
 import com.example.gategame.map.MapItem;
 import com.example.gategame.map.MapObject;
@@ -101,10 +103,17 @@ import java.util.regex.Pattern;
                 if(order == 'B'){
                     bagFlag = false;
                     gameMap.displayMap(location,mapItems);
-                }else if(Pattern.matches("[1-9]",String.valueOf(order))){
-                    int index = order;
-                    player.getBackpack().useItem(player.getBackpack().getItem(index),player);
-                    System.out.println(player.toString());
+                }else if(Pattern.matches("[0-9]*",input)){
+                    int index = Integer.parseInt(input);;
+                    if(index>player.getBackpack().getSize()){
+                        System.out.println("do not have such item");
+                    }else {
+                        Item item = player.getBackpack().getItem(index);
+                        player.getBackpack().useItem(item,player);
+                        System.out.println(player);
+                        player.getBackpack().displayItem();
+                    }
+
                 }else {
                     System.out.println("Invalid input!");
                 }
@@ -153,6 +162,15 @@ import java.util.regex.Pattern;
 //            hashMap.put(location, (MapObject) a);
             Game game = new Game();
             game.initGame();
+//            game.getPlayer().getBackpack().displayItem();
+//            Item i2 = game.getPlayer().getBackpack().getItem(4);
+//            game.getPlayer().getBackpack().useItem(i2,game.getPlayer());
+//            System.out.println(game.getPlayer());
+//            Item i2 = game.getPlayer().getBackpack().getItem(5);
+//            game.getPlayer().getBackpack().useItem(i2,game.getPlayer());
+//            System.out.println(game.getPlayer().getDamage());
+
+
             int hp;
             while (true) {
                 game = gameLoop(game);

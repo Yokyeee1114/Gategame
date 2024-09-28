@@ -94,6 +94,6 @@ public class Player extends Role {
 
     @Override
     public String toString() {
-        return String.format("%s: Power(%d), Health(%d), MaxHealth(%d), Weapon(%s)", super.getName(), getPower(), getHealth(), getMaxHealth(), getWeapon());
+        return String.format("%s: Power(%d), Health(%d), MaxHealth(%d), Weapon(%s)", super.getName(), getDamage(), getHealth(), getMaxHealth(), getWeapon());
     }
 }

@@ -16,10 +16,12 @@ public class NormalWeapon extends GeneralItem implements Weapon, MapItem {
 
 
     @Override
-    public void use(Role role) {
+    public void use(Player player) {
+
+        player.setWeapon(this);
         // equip to user
         //character.equip(this);
-        System.out.println(super.getName() + "equipped");
+        System.out.println(super.getName() + " equipped");
     }
 
 
