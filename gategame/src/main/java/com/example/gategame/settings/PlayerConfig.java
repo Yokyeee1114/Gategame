@@ -15,6 +15,13 @@ public class PlayerConfig {
     private int health;
     private List<ItemConfig> initialItems;
 
+    public PlayerConfig(String name, int power, int health, List<ItemConfig> initialItems) {
+        this.name = name;
+        this.power = power;
+        this.health = health;
+        this.initialItems = initialItems;
+    }
+
     public String getName() {
         return name;
     }
