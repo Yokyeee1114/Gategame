@@ -1,4 +1,4 @@
-package com.example.gategame.role;
+package com.example.gategame.role.monster;
 
 import com.google.gson.annotations.SerializedName;
 

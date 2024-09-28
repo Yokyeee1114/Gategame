@@ -1,8 +1,8 @@
 package com.example.gategame.battle;
 
 import com.example.gategame.backpack.Inventory;
-import com.example.gategame.role.Monster;
 import com.example.gategame.role.Player;
+import com.example.gategame.role.monster.Monster;
 import com.example.gategame.utils.PrintUtils;
 
 /**

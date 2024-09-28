@@ -32,6 +32,10 @@ public class GameEngine {
         return settingsConfig.getMonstersConfig();
     }
 
+    public PlayerConfig getPlayerConfig() {
+        return settingsConfig.getPlayerConfig();
+    }
+
     public LootConfig getLootConfig() {
         return settingsConfig.getLootConfig();
     }
@@ -75,4 +79,5 @@ public class GameEngine {
     public void gotoNextLevel() {
         setCurrentLevel(++currentLevel);
     }
+
 }
