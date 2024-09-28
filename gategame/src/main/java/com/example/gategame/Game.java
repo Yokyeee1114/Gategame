@@ -16,6 +16,7 @@ import com.example.gategame.settings.LevelConfig;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 // sample game class for testing purpose, might need to modify later
 public class Game {
@@ -50,61 +51,36 @@ public class Game {
     }
 
     public void initMapItems(){
-            List<Location> empty = gameMaps.get(0).getEmptyLocation();
+
+        Random random = new Random();
+        for (int i = 0; i < gameMaps.size(); i++) {
+            List<Location> empty = gameMaps.get(i).getEmptyLocation();
             HashMap<Location,MapItem> mapItems = new HashMap<>();
-//            Random random = new Random();
-//
-//            int index = random.nextInt(empty.size());
-//            Location location = empty.get(index);
-//            empty.remove(location);
-            Location location = new Location(3,1);
-//            Monster monster = RoleFactory.createMonster(MonsterType.MINOR);
-        MapItem potion = Inventory.getInventory().createPotion("Small Potion", 10);
+            List<Monster> monsters = RoleFactory.createLevelMonsters();
+            LevelConfig levelConfig = GameEngine.getInstance().getCurrentLevelConfig();
 
+            Gate gate = new Gate(levelConfig.getGate().isLocked());
+            Location gateLocation = gameMaps.get(i).getGateLocation();
+            Location keyLocation = empty.get(random.nextInt(empty.size()));
+            empty.remove(keyLocation);
+            empty.remove(gateLocation);
 
-        Location location2 = new Location(1,3);
-        Monster monster2 = RoleFactory.createMonster(MonsterType.ELITE);
-        Enemy enemy2 = new Enemy(monster2);
+            mapItems.put(gateLocation,gate);
+            if (gate.isLocked()) {
+                GateKey gateKey = new GateKey();
+                mapItems.put(keyLocation,gateKey);
+            }
+            for (Monster monster:monsters){
+                Location monsterLocation = empty.get(random.nextInt(empty.size()));
+                mapItems.put(monsterLocation,monster);
+                empty.remove(monsterLocation);
+            }
 
-        mapItems.put(location2, enemy2);
-
-        LevelConfig levelConfig = GameEngine.getInstance().getCurrentLevelConfig();
-        Gate gate = new Gate(levelConfig.getGate().isLocked());
-        mapItems.put(new Location(5,2),gate);
-        if (gate.isLocked()) {
-            GateKey gateKey = new GateKey();
-            mapItems.put(new Location(4,1),gateKey);
+            mapItemsList.add(mapItems);
+            if(i<2){
+                GameEngine.getInstance().gotoNextLevel();
+            }
         }
-
-        mapItemsList.add(mapItems);
-
-        GameEngine.getInstance().gotoNextLevel();
-
-        HashMap<Location,MapItem> mapItems2 = new HashMap<>();
-        mapItems2.put(new Location(1,8),RoleFactory.createMonster(MonsterType.BOSS));
-        LevelConfig levelConfig2 = GameEngine.getInstance().getCurrentLevelConfig();
-        Gate gate2 = new Gate(levelConfig2.getGate().isLocked());
-        mapItems2.put(new Location(5,2),gate2);
-        if (gate2.isLocked()) {
-            GateKey gateKey2 = new GateKey();
-            mapItems2.put(new Location(4,1),gateKey2);
-        }
-        mapItemsList.add(mapItems2);
-
-        GameEngine.getInstance().gotoNextLevel();
-
-        HashMap<Location,MapItem> mapItems3 = new HashMap<>();
-        mapItems3.put(new Location(1,8),RoleFactory.createMonster(MonsterType.BOSS));
-        LevelConfig levelConfig3 = GameEngine.getInstance().getCurrentLevelConfig();
-        Gate gate3 = new Gate(levelConfig3.getGate().isLocked());
-        mapItems3.put(new Location(5,2),gate3);
-        if (gate3.isLocked()) {
-            GateKey gateKey3 = new GateKey();
-            mapItems3.put(new Location(4,1),gateKey3);
-        }
-        mapItemsList.add(mapItems3);
-//        GameEngine.getInstance().setCurrentLevel(0);
-
     }
 
 
@@ -133,7 +109,7 @@ public class Game {
         playerLocation = new Location(1,1);
         stage = 1;
         player = RoleFactory.createPlayer();
-        player.getBackpack().addItem(Inventory.getInventory().createWeapon("Holy sword",200));
+        player.getBackpack().addItem(Inventory.getInventory().createWeapon("Divine Rapier",350));
         // create Gate
 
 
@@ -142,8 +118,8 @@ public class Game {
                 "#..............##",
                 "#.####.######..##",
                 "#.#.........#.###",//1 room
-                "#.#.#########.###",
-                "#...#.....#...###",
+                "#.#.####.####.###",
+                "#...#...........#",
                 "#################"
         });
         GameMap map2 = new GameMap(new String[]{
@@ -162,7 +138,7 @@ public class Game {
                 "#..#####....#...#..#.....#...#",
                 "#...........#...#..#.....#...#",
                 "######......#####..#######...#",
-                "#.................#.........##",
+                "#.................#..........#",
                 "##############################"
         });
         GameMap map3 = new GameMap(new String[]{
@@ -181,7 +157,7 @@ public class Game {
                 "#.#...#..#.....#....#...######",
                 "#.#...#..#######....#........#",
                 "#.#####..........#..#######..#",
-                "#........#........#.........W#",
+                "#........#........#..........#",
                 "##############################"
         });
 

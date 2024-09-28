@@ -207,43 +207,5 @@ import java.util.regex.Pattern;
                     break;
                 }
             }
-
-//            Player player = new Player("a","test",10,100);
-//            Monster a = new MinorMonster(1,100,null);
-//            BattleField.battle(player,a);
-//            System.out.println(player.getHealth());
-
-
-////            List<MapObject> mapObjects = game.getMapObjects()
-//            game.getGameMaps().get(0).displayMap(1,1);
-
         }
-
-
-            //just for test, it can be changed to Utility class later
-//            String[] mapData = {
-//                    "####.####",
-//                    "#...#...#",
-//                    "#.#...#.#",
-//                    "#.#####.#",
-//                    "#.......#",
-//                    "#########"
-//            };
-////
-//            GameMap gameMap = new GameMap(mapData);
-//            Location location = new Location(1, 1);
-////        //display the location of player
-////        if (gameMap.isValidMove(playerLocation)){
-////            gameMap.displayMap(playerLocation);
-////        }else {
-////            System.out.println("Invalid!");
-////        }
-////        Scanner scanner = new Scanner(System.in);
-//
-//            ArrayList<Location> locations = new ArrayList<>();
-//            locations.add(new Location(2,1));
-////            gameMap.displayMap(location);
-//
-
-//        }
     }

@@ -59,7 +59,9 @@ public class GameMap {
 //    public void setMapObjects(List<MapObject> mapObjects) {
 //        this.mapObjects = mapObjects;
 //    }
-
+    public Location getGateLocation(){
+        return new Location(rows-2,cols-2);
+    }
     public List<Location> getEmptyLocation(){
         List<Location> locations = new ArrayList<>();
         for (int i = 0; i < rows; i++) {
