@@ -5,6 +5,7 @@ import com.example.gategame.control.Control;
 import com.example.gategame.control.Location;
 import com.example.gategame.items.Item;
 import com.example.gategame.items.gate.Gate;
+import com.example.gategame.items.gate.GateKey;
 import com.example.gategame.items.general.weapon.NormalWeapon;
 import com.example.gategame.map.GameMap;
 import com.example.gategame.map.MapItem;
@@ -38,6 +39,7 @@ import java.util.regex.Pattern;
         }
 
         public static Game gameLoop(Game game) {
+            boolean win = false;
             boolean bagFlag  = game.bagFlag;
             Player player = game.getPlayer();
             List<GameMap> gameMaps = game.getGameMaps();
@@ -81,9 +83,15 @@ import java.util.regex.Pattern;
                             if(player.isAlive()){
                                 gameMap.displayMap(location,mapItems);}
                             if(stageChange){
-                                Location start = new Location(1,1);
-                                gameMaps.get(stage).displayMap(start,mapItemsList.get(stage));
-                                return new Game(player,gameMaps,mapItemsList,stage+1,start,bagFlag);
+                                if(stage == 3){
+                                    win = true;
+                                    return new Game(player,gameMaps,mapItemsList,stage+1,location,bagFlag,win);
+                                }else {
+                                    Location start = new Location(1,1);
+                                    gameMaps.get(stage).displayMap(start,mapItemsList.get(stage));
+                                    return new Game(player,gameMaps,mapItemsList,stage+1,start,bagFlag,win);
+                                }
+
                             }
                         } else {
                             System.out.println("Invalid move!");
@@ -122,7 +130,10 @@ import java.util.regex.Pattern;
 
 
             mapItemsList.set(stage-1,mapItems);
-            return new Game(player,gameMaps,mapItemsList,stage,location,bagFlag);
+
+            if(stage==3 && location.equals(new Location(15,28)))
+                win = true;
+            return new Game(player,gameMaps,mapItemsList,stage,location,bagFlag,win);
 
         }
 
@@ -146,7 +157,18 @@ import java.util.regex.Pattern;
                     }else {
                         return true;
                     }
-                }else {
+                }else if(mapItems.get(location) instanceof GateKey){{
+                    for (HashMap.Entry<Location, MapItem> entry : mapItems.entrySet()) {
+                        if (entry.getValue() instanceof Gate) {
+                            ((Gate) entry.getValue()).open();
+                            break;
+                        }
+                    }
+                    mapItems.remove(location);
+                    System.out.println("Gate is Open! ");
+                    }
+                }
+                else{
                     mapItems.get(location).interact(player);
                     mapItems.remove(location);
                 }
@@ -175,8 +197,13 @@ import java.util.regex.Pattern;
             while (true) {
                 game = gameLoop(game);
                 hp = game.getPlayer().getHealth();
+                boolean win = game.win;
                 if(hp<=0){
                     System.out.println("you dead");
+                    break;
+                }
+                if(win){
+                    System.out.println("You win!");
                     break;
                 }
             }

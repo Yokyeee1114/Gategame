@@ -32,14 +32,16 @@ public class Game {
     }
 
     private  Location playerLocation;
+    boolean win = false;
 
-    public Game(Player player, List<GameMap> gameMaps, List<HashMap<Location, MapItem>> mapItemsList, int stage, Location playerLocation,boolean bagFlag) {
+    public Game(Player player, List<GameMap> gameMaps, List<HashMap<Location, MapItem>> mapItemsList, int stage, Location playerLocation,boolean bagFlag,boolean win) {
         this.player = player;
         this.gameMaps = gameMaps;
         this.mapItemsList = mapItemsList;
         this.stage = stage;
         this.playerLocation = playerLocation;
         this.bagFlag = bagFlag;
+        this.win = win;
     }
 
     public Game() {
@@ -77,9 +79,32 @@ public class Game {
 
         mapItemsList.add(mapItems);
 
+        GameEngine.getInstance().gotoNextLevel();
+
         HashMap<Location,MapItem> mapItems2 = new HashMap<>();
         mapItems2.put(new Location(1,8),RoleFactory.createMonster(MonsterType.BOSS));
+        LevelConfig levelConfig2 = GameEngine.getInstance().getCurrentLevelConfig();
+        Gate gate2 = new Gate(levelConfig2.getGate().isLocked());
+        mapItems2.put(new Location(5,2),gate2);
+        if (gate2.isLocked()) {
+            GateKey gateKey2 = new GateKey();
+            mapItems2.put(new Location(4,1),gateKey2);
+        }
         mapItemsList.add(mapItems2);
+
+        GameEngine.getInstance().gotoNextLevel();
+
+        HashMap<Location,MapItem> mapItems3 = new HashMap<>();
+        mapItems3.put(new Location(1,8),RoleFactory.createMonster(MonsterType.BOSS));
+        LevelConfig levelConfig3 = GameEngine.getInstance().getCurrentLevelConfig();
+        Gate gate3 = new Gate(levelConfig3.getGate().isLocked());
+        mapItems3.put(new Location(5,2),gate3);
+        if (gate3.isLocked()) {
+            GateKey gateKey3 = new GateKey();
+            mapItems3.put(new Location(4,1),gateKey3);
+        }
+        mapItemsList.add(mapItems3);
+//        GameEngine.getInstance().setCurrentLevel(0);
 
     }
 
@@ -109,8 +134,6 @@ public class Game {
         playerLocation = new Location(1,1);
         stage = 1;
         player = RoleFactory.createPlayer();
-        player.getBackpack().addItem(Inventory.getInventory().createPotion("potion",100));
-        player.getBackpack().addItem(Inventory.getInventory().createWeapon("sword",20));
         player.getBackpack().addItem(Inventory.getInventory().createWeapon("Holy sword",200));
         // create Gate
 
@@ -118,24 +141,54 @@ public class Game {
         GameMap map1 = new GameMap(new String[]{
                 "#################",
                 "#..............##",
-                "#.####.#####.#.##",
-                "#.#.........#.###",
-                "#.#.#######.#.###",
+                "#.####.######..##",
+                "#.#.........#.###",//1 room
+                "#.#.#########.###",
                 "#...#.....#...###",
                 "#################"
         });
         GameMap map2 = new GameMap(new String[]{
-                "#################",
-                "#..............##",
-                "#.####.#####.#.##",
-                "#.#.........#.###",
-                "#.#.#######.#.###",
-                "#################",
-                "#################"
+                "##############################",
+                "#.................#.........##",
+                "#..####.....#####.....#####..#",//3 room
+                "#..#..#.....#...#.....#...#..#",
+                "#..#..#.....#.........#...#..#",
+                "#..#........#...#.....#......#",
+                "#..####.....#####.....#####..#",
+                "#.................#.........##",
+                "###....##.................####",
+                "#.................#.........##",
+                "#..#####....#####..#######...#",//another 3 room
+                "#..#............#..#.........#",
+                "#..#####....#...#..#.....#...#",
+                "#...........#...#..#.....#...#",
+                "######......#####..#######...#",
+                "#.................#.........##",
+                "##############################"
+        });
+        GameMap map3 = new GameMap(new String[]{
+                "##############################",
+                "#..................#........##",
+                "#..#####....#####..#.#######.#",
+                "#......#....#......#.......#.#",
+                "#..#####....#...#..#########.#",
+                "#...........#...#........#.#.#",
+                "######.#....#####..#####.#.#.#",
+                "#..................#.....#...#",
+                "######.................#######",
+                "#.....#......................#",
+                "#.#.###..###.###....##..#.####",
+                "#.#...#..#.....#....#...#....#",
+                "#.#...#..#.....#....#...######",
+                "#.#...#..#######....#........#",
+                "#.#####..........#..#######..#",
+                "#........#........#.........W#",
+                "##############################"
         });
 
         gameMaps.add(map1);
         gameMaps.add(map2);
+        gameMaps.add(map3);
         initMapItems();
 //        gameMaps.get(0).setMapObjects(extractMapObjects().get(0));
         gameMaps.get(0).displayMap(playerLocation,mapItemsList.get(0));
@@ -185,8 +238,10 @@ public class Game {
 //        Backpack playerBackpack = new PlayerBackpack();
 //        inventory.addItemToBackpack(playerBackpack, 0); // add a potion
 //        playerBackpack.displayItem();
-
+        GameEngine.getInstance().loadEngine();
         Game game = new Game();
         game.initGame();
+        System.out.println(game.mapItemsList);
+//        System.out.println(game.mapItemsList);
     }
 }

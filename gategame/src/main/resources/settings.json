@@ -27,6 +27,20 @@
           "boss": 1
         }
       ]
+    },
+    {
+      "level": 3,
+      "name": "The Third level",
+      "gate": {
+        "isLocked": true
+      },
+      "objects": [
+        {
+          "minor": 10,
+          "elite": 6,
+          "boss": 3
+        }
+      ]
     }
   ],
   "lootRules": {
