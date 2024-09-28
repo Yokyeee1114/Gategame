@@ -109,6 +109,7 @@ public class PlayerBackpack extends GeneralBackPack {
      */
     public void useItem(Item item, Player player) {
         if (item instanceof UsableItem) {
+            getItems().remove(item);
             ((UsableItem) item).use(player);
         } else {
             System.out.println(item.getName() + " cannot be used.");
