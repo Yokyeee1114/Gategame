@@ -3,16 +3,15 @@ package com.example.gategame.role;
 import com.example.gategame.GameEngine;
 import com.example.gategame.backpack.Backpack;
 import com.example.gategame.backpack.Inventory;
-import com.example.gategame.settings.ItemConfig;
-import com.example.gategame.settings.MonsterConfig;
-import com.example.gategame.settings.MonstersConfig;
-import com.example.gategame.settings.PlayerConfig;
+import com.example.gategame.role.monster.*;
+import com.example.gategame.settings.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author Hao Ye(u7981083)
- * Used to create monsters
+ * Used to create monsters and player
  */
 public class RoleFactory {
 
@@ -49,11 +48,19 @@ public class RoleFactory {
         return monster;
     }
 
+    public static List<Monster> createManyMonsters(MonsterType type, int amount) {
+        List<Monster> monsters = new ArrayList<>();
+        for (int i = 0; i < amount; i++) {
+            monsters.add(createMonster(type));
+        }
+        return monsters;
+    }
+
     private static PlayerConfig playerConfig;
 
     public static Player createPlayer() {
         if (playerConfig == null) {
-            playerConfig = GameEngine.getInstance().getSettingsConfig().getPlayerConfig();
+            playerConfig = GameEngine.getInstance().getPlayerConfig();
         }
         Player player = new Player(playerConfig.getName(), "", playerConfig.getPower(), playerConfig.getHealth());
         // initialize player backpack
@@ -66,4 +73,18 @@ public class RoleFactory {
         return player;
     }
 
+    /**
+     * Create all monsters for current level
+     *
+     * @return
+     */
+    public static List<Monster> createLevelMonsters() {
+        LevelConfig levelConfig = GameEngine.getInstance().getCurrentLevelConfig();
+        MapObjectConfig objectConfig = levelConfig.getObjects();
+        List<Monster> monsters = new ArrayList<>();
+        monsters.addAll(createManyMonsters(MonsterType.MINOR, objectConfig.getMinor()));
+        monsters.addAll(createManyMonsters(MonsterType.ELITE, objectConfig.getElite()));
+        monsters.addAll(createManyMonsters(MonsterType.BOSS, objectConfig.getBoss()));
+        return monsters;
+    }
 }

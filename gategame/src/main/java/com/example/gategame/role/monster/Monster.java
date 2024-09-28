@@ -1,10 +1,11 @@
-package com.example.gategame.role;
+package com.example.gategame.role.monster;
 
 
 import com.example.gategame.backpack.Backpack;
-import com.example.gategame.backpack.MonsterBackpack;
 import com.example.gategame.battle.BattleField;
 import com.example.gategame.map.MapItem;
+import com.example.gategame.role.Player;
+import com.example.gategame.role.Role;
 
 /**
  * @author Hao Ye(u7981083)

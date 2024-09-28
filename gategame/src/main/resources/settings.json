@@ -6,13 +6,11 @@
       "gate": {
         "isLocked": false
       },
-      "objects": [
-        {
+      "objects": {
           "minor": 3,
           "elite": 1,
           "boss": 1
         }
-      ]
     },
     {
       "level": 2,
@@ -20,27 +18,11 @@
       "gate": {
         "isLocked": true
       },
-      "objects": [
-        {
+      "objects": {
           "minor": 6,
           "elite": 2,
           "boss": 1
-        }
-      ]
-    },
-    {
-      "level": 3,
-      "name": "The Third level",
-      "gate": {
-        "isLocked": true
-      },
-      "objects": [
-        {
-          "minor": 10,
-          "elite": 6,
-          "boss": 3
-        }
-      ]
+      }
     }
   ],
   "lootRules": {

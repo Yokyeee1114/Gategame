@@ -10,6 +10,7 @@ public class LevelConfig implements Serializable {
     private String name;
     private GateConfig gate;
     private int level;
+    private MapObjectConfig objects;
 
     public String getName() {
         return name;
@@ -33,5 +34,13 @@ public class LevelConfig implements Serializable {
 
     public void setLevel(int level) {
         this.level = level;
+    }
+
+    public MapObjectConfig getObjects() {
+        return objects;
+    }
+
+    public void setObjects(MapObjectConfig objects) {
+        this.objects = objects;
     }
 }
