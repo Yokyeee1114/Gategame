@@ -1,7 +1,12 @@
-package com.example.gategame.control;
+package com.example.gategame.Move;
 
 import java.util.Objects;
 
+
+/**
+ * @author Zining He
+ * Location class to set the player and items location on the map
+ */
 public class Location {
     private int row;
     private int col;

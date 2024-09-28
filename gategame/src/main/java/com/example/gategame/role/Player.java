@@ -62,10 +62,10 @@ public class Player extends Role {
      */
     @Override
     public boolean attack(Role opponent) {
-        if (usePotion()) {
-            // use potion occupies the chance to attack
-            return false;
-        }
+//        if (usePotion()) {
+//            // use potion occupies the chance to attack
+//            return false;
+//        }
         return super.attack(opponent);
     }
 

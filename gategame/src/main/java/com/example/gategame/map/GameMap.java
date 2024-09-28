@@ -1,8 +1,6 @@
 package com.example.gategame.map;
 
-import com.example.gategame.control.Location;
-import com.example.gategame.items.gate.Enemy;
-import com.example.gategame.items.gate.Gate;
+import com.example.gategame.Move.Location;
 
 import java.util.ArrayList;
 import java.util.HashMap;

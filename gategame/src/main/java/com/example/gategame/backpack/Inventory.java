@@ -36,7 +36,7 @@ public class Inventory {
     public void addItem(Item item) {
         if (item != null) {
             allItems.add(item);
-            System.out.println("item " + item.getName() + " added");
+            System.out.println("You get  " + item.getName());
         }
     }
 

@@ -63,7 +63,7 @@
   ],
   "playerConfig": {
     "name": "Player",
-    "power": 20,
+    "power": 30,
     "health": 100,
     "initialItems": [
       {
@@ -100,7 +100,7 @@
         "W"
       ],
       "lootAmount": 2,
-      "power": 15,
+      "power": 10,
       "health": 100
     },
     "boss": {
