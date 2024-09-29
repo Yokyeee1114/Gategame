@@ -1,9 +1,11 @@
 package com.example.gategame.role;
 
-import com.example.gategame.backpack.Backpack;
 import com.example.gategame.backpack.Inventory;
 import com.example.gategame.backpack.PlayerBackpack;
-import com.example.gategame.equipment.Weapon;
+import com.example.gategame.items.general.potion.HpPotion;
+import com.example.gategame.items.general.weapon.Weapon;
+
+import java.util.List;
 
 /**
  * @author Hao Ye(u7981083)
@@ -46,7 +48,52 @@ public class Player extends Role {
         return damage;
     }
 
+    public PlayerBackpack getBackpack() {
+        return backpack;
+    }
 //    public Backpack getBackpack() {
 //        return backpack;
 //    }
+
+    /**
+     * Play's battle strategy: use potion when damaged
+     *
+     * @param opponent
+     */
+    @Override
+    public boolean attack(Role opponent) {
+        if (usePotion()) {
+            // use potion occupies the chance to attack
+            return false;
+        }
+        return super.attack(opponent);
+    }
+
+    /**
+     * if the hurt is greater than the potion can cure, use the potion
+     *
+     * @return if potion is used
+     */
+    private boolean usePotion() {
+        int hurt = getMaxHealth() - getHealth();
+        if (hurt == 0) {
+            return false;
+        }
+        boolean usePotion = false;
+        List<HpPotion> hpPotions = backpack.getItems(HpPotion.class);
+        for (HpPotion hpPotion : hpPotions) {
+            int effect = hpPotion.getHpPotionEffect(this);
+            if (effect <= hurt) { // decide to use potion
+                backpack.useItem(hpPotion, this);
+                usePotion = true;
+                break;
+            }
+        }
+        return usePotion;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s: Power(%d), Health(%d), MaxHealth(%d), Weapon(%s)", super.getName(), getDamage(), getHealth(), getMaxHealth(), getWeapon());
+    }
 }

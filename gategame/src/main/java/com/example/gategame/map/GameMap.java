@@ -1,6 +1,9 @@
 package com.example.gategame.map;
 
+import com.example.gategame.Move.Location;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class GameMap {
@@ -9,7 +12,7 @@ public class GameMap {
     private int cols;
     private int doorRow;
     private int doorCol;
-    private List<MapObject> mapObjects;
+//    private List<MapObject> mapObjects;
 
     private List<MapItem> mapItems;
 
@@ -18,13 +21,17 @@ public class GameMap {
         this.mapItems = mapItems;
     }
 
-    ;
 
+
+    /**
+     * @ author Yuheng Li
+     * @ param mapData
+     */
     public GameMap(String[] mapData) {
         this.rows = mapData.length;
         this.cols = mapData[0].length();
         this.grid = new char[rows][cols];
-        this.mapObjects = new ArrayList<>();
+//        this.mapObjects = new ArrayList<>();
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
@@ -36,24 +43,51 @@ public class GameMap {
             }
         }
     }
-    public void addMapObject(MapObject obj) {
-        mapObjects.add(obj);
+//    public void addMapObject(MapObject obj) {
+//        mapObjects.add(obj);
+//    }
+//    public void removeMapObject(MapObject obj) {
+//        mapObjects.remove(obj);
+//    }
+//
+//    public List<MapObject> getMapObjects() {
+//        return mapObjects;
+//    }
+//
+//    public void setMapObjects(List<MapObject> mapObjects) {
+//        this.mapObjects = mapObjects;
+//    }
+    public Location getGateLocation(){
+        return new Location(rows-2,cols-2);
+    }
+    public List<Location> getEmptyLocation(){
+        List<Location> locations = new ArrayList<>();
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j <cols ; j++) {
+                if(grid[i][j]=='.'){
+                    locations.add(new Location(i,j));
+                }
+            }
+        }
+        locations.remove(new Location(1,1));
+        return locations;
     }
 
-    /**
-     *
-     * @param playerRow
-     * @param playerCol
-     */
-    public void displayMap(int playerRow, int playerCol) {
+    public void displayMap(Location location,HashMap<Location,MapItem> mapItems) {
+        int playerRow = location.getRow();
+        int playerCol = location.getCol();
         char[][] displayGrid = new char[rows][cols];
         for (int i = 0; i < rows; i++) {
             displayGrid[i] = grid[i].clone();
         }
 
         // add the map Object
-        for (MapObject obj : mapObjects) {
-            displayGrid[obj.getRow()][obj.getCol()] = obj.getSymbol();
+//        for (MapObject obj : mapObjects) {
+//            displayGrid[obj.getRow()][obj.getCol()] = obj.getSymbol();
+//        }
+        List<Location> locations = new ArrayList<>(mapItems.keySet());
+        for (Location itemlocation :locations) {
+            displayGrid[itemlocation.getRow()][itemlocation.getCol()] = mapItems.get(itemlocation).getSymbol();
         }
 
         // add the player
@@ -69,7 +103,35 @@ public class GameMap {
     }
 
     /**
-     *
+     * @author Yuheng Li
+     * @param playerRow
+     * @param playerCol
+     */
+    public void displayMap(int playerRow, int playerCol) {
+        char[][] displayGrid = new char[rows][cols];
+        for (int i = 0; i < rows; i++) {
+            displayGrid[i] = grid[i].clone();
+        }
+
+//        // add the map Object
+//        for (MapObject obj : mapObjects) {
+//            displayGrid[obj.getRow()][obj.getCol()] = obj.getSymbol();
+//        }
+
+        // add the player
+        displayGrid[playerRow][playerCol] = 'P';
+
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                System.out.print(displayGrid[i][j]);
+            }
+            System.out.println();
+        }
+    }
+
+    /**
+     * @author Yuheng Li
      * @param row
      * @param col
      * @return
@@ -77,9 +139,16 @@ public class GameMap {
     public boolean isValidMove(int row, int col) {
         return row >= 0 && row < rows && col >= 0 && col < cols && (grid[row][col] == '.' || grid[row][col] == 'D');
     }
+    public boolean isValidMove(Location location) {
+        int row = location.getRow();
+        int col = location.getCol();
+        return row >= 0 && row < rows && col >= 0 && col < cols && grid[row][col] != '#';
+    }
+
+
 
     /**
-     *
+     * @author Yuheng Li
      * @param row
      * @param col
      * @return
@@ -88,20 +157,20 @@ public class GameMap {
         return row == doorRow && col == doorCol;
     }
 
-    /**
-     *
-     * @param row
-     * @param col
-     * @return
-     */
-    public MapObject getObjectAt(int row, int col) {
-        for (MapObject obj : mapObjects) {
-            if (obj.getRow() == row && obj.getCol() == col) {
-                return obj;
-            }
-        }
-        return null;
-    }
+//    /**
+//     * @author Yuheng Li
+//     * @param row
+//     * @param col
+//     * @return
+//     */
+//    public MapObject getObjectAt(int row, int col) {
+//        for (MapObject obj : mapObjects) {
+//            if (obj.getRow() == row && obj.getCol() == col) {
+//                return obj;
+//            }
+//        }
+//        return null;
+//    }
 
     public char[][] getGrid() {
         return grid;

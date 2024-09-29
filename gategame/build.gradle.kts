@@ -2,6 +2,7 @@ plugins {
     id("java")
 }
 
+
 group = "com.example.gategame"
 version = "1.0-SNAPSHOT"
 
@@ -21,4 +22,6 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+    maxParallelForks = 1
+    forkEvery = 1
 }

@@ -1,10 +1,13 @@
 package com.example.gategame.backpack;
 
-import com.example.gategame.equipment.Potion;
-import com.example.gategame.equipment.Weapon;
+import com.example.gategame.items.general.potion.Potion;
+import com.example.gategame.items.general.weapon.Weapon;
+import com.example.gategame.items.Item;
+import com.example.gategame.items.general.UsableItem;
+import com.example.gategame.role.Player;
+import com.example.gategame.role.Role;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,20 +16,17 @@ import java.util.stream.Collectors;
  * @author Yeming Chen
  * backpack for player, and add/use item inside
  */
-public class PlayerBackpack implements Backpack {
-    //    Role role;
-    private List<Item> items;
+public class PlayerBackpack extends GeneralBackPack {
 
 
     public PlayerBackpack() {
-//        this.role = role;
-        this.items = new ArrayList<>();
+        super();
     }
 
     @Override
     public void addItem(Item item){
         if (item != null) {
-            items.add(item);
+            super.addItem(item);
             sortItems();
             System.out.println("item " + item.getName() + " added");
         }
@@ -36,7 +36,7 @@ public class PlayerBackpack implements Backpack {
      * sort items by potion -> weapon -> other
      */
     public void sortItems() {
-        items.sort(new Comparator<Item>() {
+        getItems().sort(new Comparator<Item>() {
             @Override
             public int compare(Item item1, Item item2) {
                 // compare type first
@@ -62,29 +62,21 @@ public class PlayerBackpack implements Backpack {
         });
     }
 
-    @Override
-    public boolean removeItem(int id) {
-        if(id >= items.size()) return false;
-        items.remove(id);
-        return true;
-    }
 
     /**
-     * use item in the backpack
-     * @param id the index of item
-     * @return true if successful; false otherwise.
+     * get and remove item in the backpack
+     * @param id the index of item in backpack, not the global index
+     * @return The item of given index, null if item not found.
      */
-    public boolean useItem(int id) {
-        for(Item item : items){
-            if (item.getId() == id){
-                items.remove(item);
-                System.out.println("item " + item.getName() + " removed");
-//                item.use(role);
-                return true;
-            }
+    public Item getItem(int id) {
+        if(id >= getItems().size()) {
+            System.out.println("item " + id + " not found");
+            return null;
         }
-        System.out.println("item " + id + " not found");
-        return false;
+        Item item = getItems().get(id);
+        getItems().remove(item);
+        System.out.println("item " + item.getName() + " used");
+        return item;
     }
 
     /**
@@ -92,18 +84,49 @@ public class PlayerBackpack implements Backpack {
      * @return a list of all potion in the backpack
      */
     public List<Potion> getPotions() {
-        return items.stream()
+        return getItems().stream()
                 .filter(item -> item instanceof Potion)
                 .map(item -> (Potion) item)
                 .collect(Collectors.toList());
     }
 
     /**
+     * Filter items by generic class type
+     *
+     * @param tClass the item type to retrieve
+     * @param <T>    the class for specific item
+     * @return the item list
+     */
+    public <T extends Item> List<T> getItems(Class<T> tClass) {
+        return getItems().stream().filter(tClass::isInstance).map(tClass::cast).toList();
+    }
+
+    /**
+     * Remove the item from backpack before using it.
+     *
+     * @param item to be used
+     * @param player to be affected
+     */
+    public void useItem(Item item, Player player) {
+        if (item instanceof UsableItem) {
+            getItems().remove(item);
+            ((UsableItem) item).use(player);
+        } else {
+            System.out.println(item.getName() + " cannot be used.");
+        }
+    }
+
+    public int getSize(){
+        return getItems().size();
+    }
+
+
+    /**
      * Method to find all weapons
      * @return a list of all weapons in the backpack
      */
     public List<Weapon> getWeapons() {
-        return items.stream()
+        return getItems().stream()
                 .filter(item -> item instanceof Weapon)
                 .map(item -> (Weapon) item)
                 .collect(Collectors.toList());
@@ -111,15 +134,16 @@ public class PlayerBackpack implements Backpack {
 
     @Override
     public void displayItem() {
-        System.out.println("playerBackpack{" +
-//                "character=" + role.getName() +
-                ", items=" + items +
-                '}');
+        System.out.println("playerBackpack{");
+        for (int i = 0; i < getItems().size(); i++) {
+            System.out.println("id " + i + ": " + getItems().get(i));
+        }
+        System.out.println("}");
     }
 
     @Override
     public boolean containsItem(Item item) {
-        return items.contains(item);
+        return getItems().contains(item);
     }
 
 }

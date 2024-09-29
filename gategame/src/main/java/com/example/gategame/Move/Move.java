@@ -1,6 +1,6 @@
-package com.example.gategame.control;
+package com.example.gategame.Move;
 
-public class Control {
+public class Move {
 
     /**
      * @param order order to move to which direction

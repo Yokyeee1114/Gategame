@@ -6,23 +6,54 @@
       "gate": {
         "isLocked": false
       },
-      "monsters": [
-        {
-          "id": "Boss",
-          "loot": [
-            "1"
-          ]
-        }
-      ]
+      "objects": {
+        "minor": 3,
+        "elite": 1,
+        "boss": 1
+      }
     },
     {
       "level": 2,
       "name": "The second level",
       "gate": {
         "isLocked": true
+      },
+      "objects": {
+        "minor": 6,
+        "elite": 2,
+        "boss": 1
+      }
+    },
+    {
+      "level": 3,
+      "name": "The third level",
+      "gate": {
+        "isLocked": true
+      },
+      "objects": {
+        "minor": 10,
+        "elite": 5,
+        "boss": 2
       }
     }
   ],
+  "lootRules": {
+    "minion": {
+      "minPower": 5,
+      "maxPower": 15,
+      "potionRate": 2
+    },
+    "elite": {
+      "minPower": 15,
+      "maxPower": 25,
+      "potionRate": 2
+    },
+    "boss": {
+      "minPower": 20,
+      "maxPower": 30,
+      "potionRate": 2
+    }
+  },
   "items": [
     {
       "key": "1",
@@ -30,10 +61,72 @@
       "power": "10"
     }
   ],
-  "monsters": [
-    {
-      "name": "Boss",
-      "attack": 100
+  "playerConfig": {
+    "name": "Player",
+    "power": 30,
+    "health": 100,
+    "initialItems": [
+      {
+        "type": "potion",
+        "name": "Small Potion",
+        "power": 10
+      },
+      {
+        "type": "potion",
+        "name": "Medium Potion",
+        "power": 30
+      },
+      {
+        "type": "potion",
+        "name": "Ultimate Potion",
+        "power": 100
+      }
+    ]
+  },
+  "monstersConfig": {
+    "minor": {
+      "type": "Minor",
+      "lootItems": [
+        "P"
+      ],
+      "lootAmount": 1,
+      "power": 5,
+      "health": 50
+    },
+    "elite": {
+      "type": "Elite",
+      "lootItems": [
+        "P",
+        "W"
+      ],
+      "lootAmount": 2,
+      "power": 10,
+      "health": 100
+    },
+    "boss": {
+      "type": "Boss",
+      "lootItems": [
+        "P",
+        "W",
+        "K"
+      ],
+      "lootAmount": 3,
+      "power": 20,
+      "health": 200
     }
-  ]
+  },
+  "inventoryConfig": {
+    "items": [
+      {
+        "type": "potion",
+        "name": "small Potion",
+        "power": 10
+      },
+      {
+        "type": "weapon",
+        "name": "small sword",
+        "power": 10
+      }
+    ]
+  }
 }

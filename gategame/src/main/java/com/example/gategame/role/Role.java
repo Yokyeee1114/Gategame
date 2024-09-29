@@ -1,7 +1,6 @@
 package com.example.gategame.role;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.example.gategame.utils.PrintUtils;
 
 /**
  * @author Hao Ye(u7981083)
@@ -81,17 +80,16 @@ public class Role {
         return health > 0;
     }
 
-    public List<String> attack(Role opponent){
-        List<String> result = new ArrayList<>();
+    public boolean attack(Role opponent) {
         Integer damage = getDamage();
         opponent.setHealth(opponent.getHealth() - damage);
-        result.add("%s attacked %s for %d damage.".formatted(name, opponent.name, damage));
+        PrintUtils.print("%s attacked %s for %d damage.".formatted(name, opponent.name, damage));
         if(!opponent.isAlive()){
-            result.add("%s has been defeated.".formatted(opponent.name));
+            PrintUtils.print("%s has been defeated.".formatted(opponent.name));
         }else{
-            result.add("%s has %s HP remaining".formatted(opponent.name, opponent.getHealth()));
+            PrintUtils.print("%s has %s HP remaining".formatted(opponent.name, opponent.getHealth()));
         }
-        return result;
+        return true;
     }
 
     /**

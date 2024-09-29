@@ -1,12 +1,12 @@
-package com.example.gategame.equipment;
+package com.example.gategame.items.general.weapon;
 
-import com.example.gategame.backpack.Item;
+import com.example.gategame.items.general.UsableItem;
 
 /**
  * Weapon's properties.
  * @author Hao Ye(u7981083)
  */
-public interface Weapon extends Item {
+public interface Weapon extends UsableItem {
 
     /**
      *

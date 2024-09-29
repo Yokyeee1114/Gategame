@@ -1,5 +1,12 @@
-package com.example.gategame.control;
+package com.example.gategame.Move;
 
+import java.util.Objects;
+
+
+/**
+ * @author Zining He
+ * Location class to set the player and items location on the map
+ */
 public class Location {
     private int row;
     private int col;
@@ -42,5 +49,15 @@ public class Location {
         return col+" "+row;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Location location)) return false;
+        return getRow() == location.getRow() && getCol() == location.getCol();
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(getRow(), getCol());
+    }
 }
