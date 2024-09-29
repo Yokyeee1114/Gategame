@@ -283,7 +283,7 @@ import java.util.regex.Pattern;
                 System.out.println(line);
                 Thread.sleep(200);
             }
-            System.out.println("Print S to start");
-            System.out.println("Print Q to Quit");
+            System.out.println("Input S to start");
+            System.out.println("Input Q to Quit");
         }
     }
